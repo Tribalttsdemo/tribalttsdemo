@@ -1,355 +1,192 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tribal Language TTS — InterSpeech 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Tribal TTS Demo</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body{
+margin:0;
+font-family:'Inter',sans-serif;
+background:linear-gradient(120deg,#eef2ff,#f8fafc);
+color:#1f2937;
+}
 
-  :root {
-    --primary: #4f46e5;
-    --secondary: #7c3aed;
-    --accent: #06b6d4;
-    --bg: #f8fafc;
-    --surface: #ffffff;
-    --surface2: #f1f5f9;
-    --border: #e2e8f0;
-    --text: #0f172a;
-    --text-muted: #64748b;
-    --radius: 16px;
-    --shadow: 0 4px 24px rgba(0,0,0,0.07);
-    --shadow-lg: 0 8px 40px rgba(79,70,229,0.13);
-  }
+.hero{
+text-align:center;
+padding:70px 20px;
+background:linear-gradient(135deg,#6366f1,#8b5cf6);
+color:white;
+box-shadow:0 8px 30px rgba(0,0,0,0.15);
+}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-  }
+.hero h1{
+font-size:42px;
+margin-bottom:10px;
+}
 
-  header {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, var(--accent) 100%);
-    color: white;
-    padding: 64px 24px 52px;
-    text-align: center;
-  }
-  .badge {
-    display: inline-block;
-    background: rgba(255,255,255,0.18);
-    border: 1px solid rgba(255,255,255,0.35);
-    border-radius: 999px;
-    padding: 4px 18px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-  }
-  header h1 {
-    font-size: clamp(24px, 5vw, 46px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 10px;
-  }
-  header p {
-    font-size: 16px;
-    opacity: 0.85;
-    font-weight: 300;
-  }
+.hero p{
+opacity:.9;
+}
 
-  .nav-wrap {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-  }
-  .nav-tabs {
-    display: flex; gap: 6px;
-    max-width: 860px; margin: 0 auto;
-    padding: 10px 20px; overflow-x: auto;
-  }
-  .nav-tabs button {
-    flex-shrink: 0; background: none; border: none;
-    padding: 8px 22px; border-radius: 999px;
-    font-size: 14px; font-weight: 500;
-    color: var(--text-muted); cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    transition: all 0.2s;
-  }
-  .nav-tabs button:hover { background: var(--surface2); color: var(--text); }
-  .nav-tabs button.active { background: var(--primary); color: #fff; }
+.container{
+max-width:1100px;
+margin:auto;
+padding:40px 20px;
+}
 
-  main { max-width: 860px; margin: 0 auto; padding: 44px 20px 80px; }
+.language{
+margin-bottom:50px;
+}
 
-  .lang-section { display: none; }
-  .lang-section.visible { display: block; }
+.language h2{
+font-size:28px;
+margin-bottom:20px;
+}
 
-  .lang-header {
-    display: flex; align-items: center;
-    gap: 14px; margin-bottom: 30px;
-    padding-bottom: 16px;
-    border-bottom: 2px solid var(--border);
-  }
-  .lang-emoji { font-size: 32px; }
-  .lang-header h2 { font-size: 24px; font-weight: 700; }
+.models{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
 
-  /* ── CARD ── */
-  .sample-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px 28px;
-    margin-bottom: 18px;
-    box-shadow: var(--shadow);
-    transition: box-shadow 0.2s, transform 0.15s;
-  }
-  .sample-card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
-  }
+.model{
+background:white;
+border-radius:16px;
+padding:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+transition:.25s;
+}
 
-  /* sentence row */
-  .sentence-row {
-    display: flex; align-items: flex-start;
-    gap: 12px; margin-bottom: 20px;
-  }
-  .sid {
-    flex-shrink: 0;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    padding: 3px 9px;
-    font-size: 11px; font-weight: 700;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-    margin-top: 2px;
-  }
-  .sentence {
-    font-size: 16px; font-weight: 500;
-    line-height: 1.7; color: var(--text);
-  }
+.model:hover{
+transform:translateY(-6px);
+box-shadow:0 15px 35px rgba(0,0,0,0.12);
+}
 
-  /* audio rows */
-  .audio-rows { display: flex; flex-direction: column; gap: 10px; }
-  .audio-row {
-    display: flex; align-items: center; gap: 14px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 10px 14px;
-  }
-  .model-name {
-    flex-shrink: 0; width: 160px;
-    font-size: 12px; font-weight: 600;
-    letter-spacing: 0.04em;
-    display: flex; align-items: center; gap: 7px;
-    color: var(--text);
-  }
-  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  audio { flex: 1; height: 34px; min-width: 0; }
+.badge{
+display:inline-block;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:600;
+margin-bottom:10px;
+}
 
-  footer {
-    text-align: center; padding: 28px 20px;
-    font-size: 13px; color: var(--text-muted);
-    border-top: 1px solid var(--border);
-  }
+.indicparler{background:#e0e7ff;color:#3730a3;}
+.glowtts{background:#dcfce7;color:#166534;}
+.glowtts_finetuned{background:#fef3c7;color:#92400e;}
 
-  @media (max-width: 560px) {
-    .audio-row { flex-direction: column; align-items: flex-start; }
-    .model-name { width: auto; }
-    audio { width: 100%; }
-  }
+.audio{
+margin-top:10px;
+padding:10px;
+background:#f9fafb;
+border-radius:10px;
+}
+
+audio{
+width:100%;
+margin-top:5px;
+}
+
+.footer{
+text-align:center;
+padding:40px;
+color:#6b7280;
+font-size:14px;
+}
 
 </style>
+
 </head>
+
 <body>
 
-<header>
-  <div class="badge">🔒 Anonymous Submission · InterSpeech 2026</div>
-  <h1>Tribal Language TTS</h1>
-  <p>Audio samples across models for low-resource tribal languages</p>
-</header>
-
-<div class="nav-wrap">
-  <div class="nav-tabs" id="navTabs"></div>
+<div class="hero">
+<h1>Tribal Language TTS Demo</h1>
+<p>Speech samples generated using IndicParler and GlowTTS models</p>
 </div>
 
-<main id="main"></main>
+<div class="container">
+<div id="content"></div>
+</div>
 
-<footer>
-  Anonymous submission for peer review — InterSpeech 2026. Author identities withheld.
-</footer>
+<div class="footer">
+Audio files loaded directly from GitHub repository
+</div>
 
 <script>
 
-const transcripts = {
-  B1:"तिनाई दावो कियों के तिनाई कीना मनखा हाथे हमेशा आलयोतों के तीनान निवास लड़ाई दंगड़ामा मारी सके से।",
-  B2:"तिनायु दावो करियों के केजरीवाल आपड़ी सरकार ने हार थी, जनता नौ ध्यान हटाड़वा नीं कोशिश करी रियों हतो।",
-  B3:"पेलखी शताब्दी में एरे मेरा लद्दाख कुषण सम्राज्य न एक भाग्य।",
-  B4:"मारी हाथे टेकामजी आवी रा छे",
-  B5:"कागद नी रसीदियों इंस्‍टाकार्ट नी दौलत से, अनें तिनां फेर सब टैम आपड़ी कन राखवुं जोवे।",
-  B6:"तिनाई दावो कियों के तिनाई कीना मनखा हाथे हमेशा आलयोतों के तीनान निवास लड़ाई दंगड़ामा मारी सके से।",
-  B7:"तिनायु दावो करियों के केजरीवाल आपड़ी सरकार ने हार थी, जनता नौ ध्यान हटाड़वा नीं कोशिश करी रियों हतो।",
-  B8:"पेलखी शताब्दी में एरे मेरा लद्दाख कुषण सम्राज्य न एक भाग्य।",
-  B9:"मारी हाथे टेकामजी आवी रा छे",
-  B10:"कागद नी रसीदियों इंस्‍टाकार्ट नी दौलत से, अनें तिनां फेर सब टैम आपड़ी कन राखवुं जोवे।",
-  B11:"तिनाई दावो कियों के तिनाई कीना मनखा हाथे हमेशा आलयोतों के तीनान निवास लड़ाई दंगड़ामा मारी सके से।",
-  B12:"तिनायु दावो करियों के केजरीवाल आपड़ी सरकार ने हार थी, जनता नौ ध्यान हटाड़वा नीं कोशिश करी रियों हतो।",
-  B13:"पेलखी शताब्दी में एरे मेरा लद्दाख कुषण सम्राज्य न एक भाग्य।",
-  B14:"मारी हाथे टेकामजी आवी रा छे",
-  B15:"कागद नी रसीदियों इंस्‍टाकार्ट नी दौलत से, अनें तिनां फेर सब टैम आपड़ी कन राखवुं जोवे।",
-  B16:"तिनाई दावो कियों के तिनाई कीना मनखा हाथे हमेशा आलयोतों के तीनान निवास लड़ाई दंगड़ामा मारी सके से।",
-  B17:"तिनायु दावो करियों के केजरीवाल आपड़ी सरकार ने हार थी, जनता नौ ध्यान हटाड़वा नीं कोशिश करी रियों हतो।",
-  B18:"पेलखी शताब्दी में एरे मेरा लद्दाख कुषण सम्राज्य न एक भाग्य।",
-  B19:"मारी हाथे टेकामजी आवी रा छे",
-  B20:"कागद नी रसीदियों इंस्‍टाकार्ट नी दौलत से, अनें तिनां फेर सब टैम आपड़ी कन राखवुं जोवे।",
+const api="https://api.github.com/repos/Tribalttsdemo/tribalttsdemo/contents";
 
-  M1:"इनाम‌हातु रे पुरातत्त्वविदको गोम, जौ, चउलि, दालि, बाजरा, मटर ओडोः तिलमिङ रेअ: जङको नम तदा ।",
-  M2:"एना मेनते इनि: इमिन निदा पुणे महाराष्ट्र ते वाराणसी उत्तर प्रदेशबोओ: कुंदुडी दिसुम रअः रेल गाड़ी जिलिंग गाड़ि सब केदए ।",
-  M3:"इनिःया निशाना तइकेना उमिआन मंदिर, एनरे गुजरात रेआ सोमनाथ मंदिर ओ जामा कान ताइकेना ।",
-  M4:"मेनदो आम सेनाकानाम जाआनाः नाम मेनते।",
-  M5:"उबर होरा रे सेसेन तन जागार साहिति ओड़ो: होड़ो गोट कोआ लेपेल चिपिना राष्ट्रीय, अन्तराष्ट्रीय लेकाते ओनोल सहिति होरा तेगे उरूमोआ।",
-  M6:"इनाम‌हातु रे पुरातत्त्वविदको गोम, जौ, चउलि, दालि, बाजरा, मटर ओडोः तिलमिङ रेअ: जङको नम तदा ।",
-  M7:"एना मेनते इनि: इमिन निदा पुणे महाराष्ट्र ते वाराणसी उत्तर प्रदेशबोओ: कुंदुडी दिसुम रअः रेल गाड़ी जिलिंग गाड़ि सब केदए ।",
-  M8:"इनिःया निशाना तइकेना उमिआन मंदिर, एनरे गुजरात रेआ सोमनाथ मंदिर ओ जामा कान ताइकेना ।",
-  M9:"मेनदो आम सेनाकानाम जाआनाः नाम मेनते।",
-  M10:"उबर होरा रे सेसेन तन जागार साहिति ओड़ो: होड़ो गोट कोआ लेपेल चिपिना राष्ट्रीय, अन्तराष्ट्रीय लेकाते ओनोल सहिति होरा तेगे उरूमोआ।",
-  M11:"इनाम‌हातु रे पुरातत्त्वविदको गोम, जौ, चउलि, दालि, बाजरा, मटर ओडोः तिलमिङ रेअ: जङको नम तदा ।",
-  M12:"एना मेनते इनि: इमिन निदा पुणे महाराष्ट्र ते वाराणसी उत्तर प्रदेशबोओ: कुंदुडी दिसुम रअः रेल गाड़ी जिलिंग गाड़ि सब केदए ।",
-  M13:"इनिःया निशाना तइकेना उमिआन मंदिर, एनरे गुजरात रेआ सोमनाथ मंदिर ओ जामा कान ताइकेना ।",
-  M14:"मेनदो आम सेनाकानाम जाआनाः नाम मेनते।",
-  M15:"उबर होरा रे सेसेन तन जागार साहिति ओड़ो: होड़ो गोट कोआ लेपेल चिपिना राष्ट्रीय, अन्तराष्ट्रीय लेकाते ओनोल सहिति होरा तेगे उरूमोआ।",
-  M16:"इनाम‌हातु रे पुरातत्त्वविदको गोम, जौ, चउलि, दालि, बाजरा, मटर ओडोः तिलमिङ रेअ: जङको नम तदा ।",
-  M17:"एना मेनते इनि: इमिन निदा पुणे महाराष्ट्र ते वाराणसी उत्तर प्रदेशबोओ: कुंदुडी दिसुम रअः रेल गाड़ी जिलिंग गाड़ि सब केदए ।",
-  M18:"इनिःया निशाना तइकेना उमिआन मंदिर, एनरे गुजरात रेआ सोमनाथ मंदिर ओ जामा कान ताइकेना ।",
-  M19:"मेनदो आम सेनाकानाम जाआनाः नाम मेनते।",
-  M20:"उबर होरा रे सेसेन तन जागार साहिति ओड़ो: होड़ो गोट कोआ लेपेल चिपिना राष्ट्रीय, अन्तराष्ट्रीय लेकाते ओनोल सहिति होरा तेगे उरूमोआ।",
+async function loadData(){
 
-  S1:"ᱤᱧ ᱫᱤᱥᱚᱢ ᱞᱟᱦᱟᱱᱛᱤ ᱚᱪᱚ ᱠᱟᱛᱮ ᱱᱚᱶᱟ ᱪᱮᱛᱟᱱ ᱴᱷᱟᱶᱛᱮ ᱨᱟᱠᱟᱵ ᱚᱪᱚᱭᱨᱮ ᱦᱚᱲᱠᱚ ᱱᱚᱶᱟ ᱢᱩᱲᱩᱫ ᱵᱟᱴᱮᱴ ᱞᱟᱹᱜᱤᱫ ᱥᱟᱱᱟᱢ ᱫᱤᱥᱚᱢ ᱦᱚᱲᱠᱚᱧ ᱥᱟᱨᱦᱟᱣᱮᱫᱯᱮᱭᱟ ᱾",
-  S2:"ᱠᱟᱹᱣᱰᱤ ᱠᱟᱹᱨᱡᱤ ᱱᱤᱨᱢᱚᱞᱟ ᱥᱤᱛᱟᱨᱚᱢᱚᱬᱚ ᱡᱤ ᱟᱨ ᱩᱱᱤᱭᱟᱜ ᱥᱟᱱᱟᱢ ᱜᱟᱫᱮᱞ ᱫᱚ ᱟᱹᱰᱤ ᱟᱹᱰᱤ ᱥᱟᱨᱦᱟᱣ ᱧᱟᱢ ᱦᱚᱠᱨᱤᱱᱜᱮ ᱾",
-  S3:"ᱜᱟᱛᱮ ᱠᱚ, ᱱᱚᱶᱟ ᱵᱚᱡᱮᱴ ᱫᱚ ᱥᱟᱶᱛᱟᱨᱤᱱ ᱥᱟᱱᱟᱢ ᱛᱷᱚᱠ ᱦᱚᱲᱠᱚ ᱫᱟᱲᱮ ᱮᱢᱚᱜᱚᱜ ᱵᱚᱡᱮᱴ ᱠᱟᱱᱟ ᱾",
-  S4:"ᱱᱚᱶᱟ ᱫᱚ ᱟᱹᱛᱩᱼᱨᱮᱝᱜᱮᱡᱼ ᱪᱟᱹᱥᱤ ᱢᱩᱞᱤᱭᱟᱹᱠᱚ ᱱᱟᱯᱟᱭ ᱥᱤᱜᱤᱞᱚᱜ ᱨᱮᱭᱟᱜ ᱵᱚᱡᱮᱡ ᱠᱟᱱᱟ ᱾",
-  S5:"ᱪᱟᱞᱟᱣᱮᱱ ᱑0 ᱥᱮᱨᱢᱟ ᱨᱮ ᱒᱕ ᱠᱟᱹᱨᱩᱲ ᱦᱚᱲ ᱫᱚ ᱨᱮᱝᱜᱮᱡ ᱛᱟᱹᱞᱠᱟᱹ ᱠᱷᱚᱱ ᱵᱟᱦᱨᱮᱛᱮ ᱚᱰᱚᱠ ᱟᱠᱟᱱᱟ ᱾",
-  S6:"ᱤᱧ ᱫᱤᱥᱚᱢ ᱞᱟᱦᱟᱱᱛᱤ ᱚᱪᱚ ᱠᱟᱛᱮ ᱱᱚᱶᱟ ᱪᱮᱛᱟᱱ ᱴᱷᱟᱶᱛᱮ ᱨᱟᱠᱟᱵ ᱚᱪᱚᱭᱨᱮ ᱦᱚᱲᱠᱚ ᱱᱚᱶᱟ ᱢᱩᱲᱩᱫ ᱵᱟᱴᱮᱴ ᱞᱟᱹᱜᱤᱫ ᱥᱟᱱᱟᱢ ᱫᱤᱥᱚᱢ ᱦᱚᱲᱠᱚᱧ ᱥᱟᱨᱦᱟᱣᱮᱫᱯᱮᱭᱟ ᱾",
-  S7:"ᱠᱟᱹᱣᱰᱤ ᱠᱟᱹᱨᱡᱤ ᱱᱤᱨᱢᱚᱞᱟ ᱥᱤᱛᱟᱨᱚᱢᱚᱬᱚ ᱡᱤ ᱟᱨ ᱩᱱᱤᱭᱟᱜ ᱥᱟᱱᱟᱢ ᱜᱟᱫᱮᱞ ᱫᱚ ᱟᱹᱰᱤ ᱟᱹᱰᱤ ᱥᱟᱨᱦᱟᱣ ᱧᱟᱢ ᱦᱚᱠᱨᱤᱱᱜᱮ ᱾",
-  S8:"ᱜᱟᱛᱮ ᱠᱚ, ᱱᱚᱶᱟ ᱵᱚᱡᱮᱴ ᱫᱚ ᱥᱟᱶᱛᱟᱨᱤᱱ ᱥᱟᱱᱟᱢ ᱛᱷᱚᱠ ᱦᱚᱲᱠᱚ ᱫᱟᱲᱮ ᱮᱢᱚᱜᱚᱜ ᱵᱚᱡᱮᱴ ᱠᱟᱱᱟ ᱾",
-  S9:"ᱱᱚᱶᱟ ᱫᱚ ᱟᱹᱛᱩᱼᱨᱮᱝᱜᱮᱡᱼ ᱪᱟᱹᱥᱤ ᱢᱩᱞᱤᱭᱟᱹᱠᱚ ᱱᱟᱯᱟᱭ ᱥᱤᱜᱤᱞᱚᱜ ᱨᱮᱭᱟᱜ ᱵᱚᱡᱮᱡ ᱠᱟᱱᱟ ᱾",
-  S10:"ᱪᱟᱞᱟᱣᱮᱱ ᱑0 ᱥᱮᱨᱢᱟ ᱨᱮ ᱒᱕ ᱠᱟᱹᱨᱩᱲ ᱦᱚᱲ ᱫᱚ ᱨᱮᱝᱜᱮᱡ ᱛᱟᱹᱞᱠᱟᱹ ᱠᱷᱚᱱ ᱵᱟᱦᱨᱮᱛᱮ ᱚᱰᱚᱠ ᱟᱠᱟᱱᱟ ᱾",
-  S11:"ᱤᱧ ᱫᱤᱥᱚᱢ ᱞᱟᱦᱟᱱᱛᱤ ᱚᱪᱚ ᱠᱟᱛᱮ ᱱᱚᱶᱟ ᱪᱮᱛᱟᱱ ᱴᱷᱟᱶᱛᱮ ᱨᱟᱠᱟᱵ ᱚᱪᱚᱭᱨᱮ ᱦᱚᱲᱠᱚ ᱱᱚᱶᱟ ᱢᱩᱲᱩᱫ ᱵᱟᱴᱮᱴ ᱞᱟᱹᱜᱤᱫ ᱥᱟᱱᱟᱢ ᱫᱤᱥᱚᱢ ᱦᱚᱲᱠᱚᱧ ᱥᱟᱨᱦᱟᱣᱮᱫᱯᱮᱭᱟ ᱾",
-  S12:"ᱠᱟᱹᱣᱰᱤ ᱠᱟᱹᱨᱡᱤ ᱱᱤᱨᱢᱚᱞᱟ ᱥᱤᱛᱟᱨᱚᱢᱚᱬᱚ ᱡᱤ ᱟᱨ ᱩᱱᱤᱭᱟᱜ ᱥᱟᱱᱟᱢ ᱜᱟᱫᱮᱞ ᱫᱚ ᱟᱹᱰᱤ ᱟᱹᱰᱤ ᱥᱟᱨᱦᱟᱣ ᱧᱟᱢ ᱦᱚᱠᱨᱤᱱᱜᱮ ᱾",
-  S13:"ᱜᱟᱛᱮ ᱠᱚ, ᱱᱚᱶᱟ ᱵᱚᱡᱮᱴ ᱫᱚ ᱥᱟᱶᱛᱟᱨᱤᱱ ᱥᱟᱱᱟᱢ ᱛᱷᱚᱠ ᱦᱚᱲᱠᱚ ᱫᱟᱲᱮ ᱮᱢᱚᱜᱚᱜ ᱵᱚᱡᱮᱴ ᱠᱟᱱᱟ ᱾",
-  S14:"ᱱᱚᱶᱟ ᱫᱚ ᱟᱹᱛᱩᱼᱨᱮᱝᱜᱮᱡᱼ ᱪᱟᱹᱥᱤ ᱢᱩᱞᱤᱭᱟᱹᱠᱚ ᱱᱟᱯᱟᱭ ᱥᱤᱜᱤᱞᱚᱜ ᱨᱮᱭᱟᱜ ᱵᱚᱡᱮᱡ ᱠᱟᱱᱟ ᱾",
-  S15:"ᱪᱟᱞᱟᱣᱮᱱ ᱑0 ᱥᱮᱨᱢᱟ ᱨᱮ ᱒᱕ ᱠᱟᱹᱨᱩᱲ ᱦᱚᱲ ᱫᱚ ᱨᱮᱝᱜᱮᱡ ᱛᱟᱹᱞᱠᱟᱹ ᱠᱷᱚᱱ ᱵᱟᱦᱨᱮᱛᱮ ᱚᱰᱚᱠ ᱟᱠᱟᱱᱟ ᱾",
-  S16:"ᱤᱧ ᱫᱤᱥᱚᱢ ᱞᱟᱦᱟᱱᱛᱤ ᱚᱪᱚ ᱠᱟᱛᱮ ᱱᱚᱶᱟ ᱪᱮᱛᱟᱱ ᱴᱷᱟᱶᱛᱮ ᱨᱟᱠᱟᱵ ᱚᱪᱚᱭᱨᱮ ᱦᱚᱲᱠᱚ ᱱᱚᱶᱟ ᱢᱩᱲᱩᱫ ᱵᱟᱴᱮᱴ ᱞᱟᱹᱜᱤᱫ ᱥᱟᱱᱟᱢ ᱫᱤᱥᱚᱢ ᱦᱚᱲᱠᱚᱧ ᱥᱟᱨᱦᱟᱣᱮᱫᱯᱮᱭᱟ ᱾",
-  S17:"ᱠᱟᱹᱣᱰᱤ ᱠᱟᱹᱨᱡᱤ ᱱᱤᱨᱢᱚᱞᱟ ᱥᱤᱛᱟᱨᱚᱢᱚᱬᱚ ᱡᱤ ᱟᱨ ᱩᱱᱤᱭᱟᱜ ᱥᱟᱱᱟᱢ ᱜᱟᱫᱮᱞ ᱫᱚ ᱟᱹᱰᱤ ᱟᱹᱰᱤ ᱥᱟᱨᱦᱟᱣ ᱧᱟᱢ ᱦᱚᱠᱨᱤᱱᱜᱮ ᱾",
-  S18:"ᱜᱟᱛᱮ ᱠᱚ, ᱱᱚᱶᱟ ᱵᱚᱡᱮᱴ ᱫᱚ ᱥᱟᱶᱛᱟᱨᱤᱱ ᱥᱟᱱᱟᱢ ᱛᱷᱚᱠ ᱦᱚᱲᱠᱚ ᱫᱟᱲᱮ ᱮᱢᱚᱜᱚᱜ ᱵᱚᱡᱮᱴ ᱠᱟᱱᱟ ᱾",
-  S19:"ᱱᱚᱶᱟ ᱫᱚ ᱟᱹᱛᱩᱼᱨᱮᱝᱜᱮᱡᱼ ᱪᱟᱹᱥᱤ ᱢᱩᱞᱤᱭᱟᱹᱠᱚ ᱱᱟᱯᱟᱭ ᱥᱤᱜᱤᱞᱚᱜ ᱨᱮᱭᱟᱜ ᱵᱚᱡᱮᱡ ᱠᱟᱱᱟ ᱾",
-  S20:"ᱪᱟᱞᱟᱣᱮᱱ ᱑0 ᱥᱮᱨᱢᱟ ᱨᱮ ᱒᱕ ᱠᱟᱹᱨᱩᱲ ᱦᱚᱲ ᱫᱚ ᱨᱮᱝᱜᱮᱡ ᱛᱟᱹᱞᱠᱟᱹ ᱠᱷᱚᱱ ᱵᱟᱦᱨᱮᱛᱮ ᱚᱰᱚᱠ ᱟᱠᱟᱱᱟ ᱾",
+const container=document.getElementById("content");
+const languages=await fetch(api).then(r=>r.json());
 
-  G1:"निम्मट सपय जन ना संग उन्द बेरा पेर वड़्कसोरे नाकुन कुबैय गिर्रदा आयता।",
-  G2:"तिकूर ता पोदेला सोन त लेहका चमके माले आकींग लेहका आन्ता",
-  G3:"हुचुक हाट्कना मुन्ने नाकुन पुट्त इद कोगेत ते उन्द कुबैय गिर्रदा ता विषय ता बारे ते वेहले आता।",
-  G4:"भारत ते तिन्दाना उन्द रीति आंद, केवल अंकाल तून मायहन आयो।",
-  G5:"भारतीय राजनीति ते संस्कृति नीति ता गल्ला कुबेय कास मंता",
-  G6:"निम्मट सपय जन ना संग उन्द बेरा पेर वड़्कसोरे नाकुन कुबैय गिर्रदा आयता।",
-  G7:"तिकूर ता पोदेला सोन त लेहका चमके माले आकींग लेहका आन्ता",
-  G8:"हुचुक हाट्कना मुन्ने नाकुन पुट्त इद कोगेत ते उन्द कुबैय गिर्रदा ता विषय ता बारे ते वेहले आता।",
-  G9:"भारत ते तिन्दाना उन्द रीति आंद, केवल अंकाल तून मायहन आयो।",
-  G10:"भारतीय राजनीति ते संस्कृति नीति ता गल्ला कुबेय कास मंता",
-  G11:"निम्मट सपय जन ना संग उन्द बेरा पेर वड़्कसोरे नाकुन कुबैय गिर्रदा आयता।",
-  G12:"तिकूर ता पोदेला सोन त लेहका चमके माले आकींग लेहका आन्ता",
-  G13:"हुचुक हाट्कना मुन्ने नाकुन पुट्त इद कोगेत ते उन्द कुबैय गिर्रदा ता विषय ता बारे ते वेहले आता।",
-  G14:"भारत ते तिन्दाना उन्द रीति आंद, केवल अंकाल तून मायहन आयो।",
-  G15:"भारतीय राजनीति ते संस्कृति नीति ता गल्ला कुबेय कास मंता"
-};
+for(const lang of languages){
 
-const allModels = [
-  { name:"Indic Parler TTS",   folder:"indicparler",       color:"#4f46e5" },
-  { name:"Glow-TTS",           folder:"glowtts",           color:"#0891b2" },
-  { name:"Glow-TTS Finetuned", folder:"glowtts_finetuned", color:"#7c3aed" }
-];
+if(lang.type!=="dir") continue;
 
-const languages = [
-  { id:"Bhili",   emoji:"🌿", prefix:"b", color:"#4f46e5",
-    ids: Array.from({length:20}, (_,i) => i+1), models: allModels },
+let langDiv=document.createElement("div");
+langDiv.className="language";
+langDiv.innerHTML=`<h2>${lang.name}</h2><div class="models"></div>`;
+container.appendChild(langDiv);
 
-  { id:"Mundari", emoji:"🌾", prefix:"m", color:"#16a34a",
-    ids: Array.from({length:20}, (_,i) => i+1), models: allModels },
+const modelGrid=langDiv.querySelector(".models");
 
-  { id:"Santali", emoji:"🪘", prefix:"s", color:"#ea580c",
-    ids: Array.from({length:20}, (_,i) => i+1),
-    models: [
-      { name:"Indic Parler TTS", folder:"indicparler", color:"#4f46e5" },
-      { name:"Glow-TTS",         folder:"glowtts",     color:"#0891b2" }
-    ]
-  },
+const models=await fetch(lang.url).then(r=>r.json());
 
-  { id:"Gondi",   emoji:"🏞️", prefix:"g", color:"#9333ea",
-    ids: Array.from({length:15}, (_,i) => i+1), models: allModels }
-];
+for(const model of models){
 
-/* ── BUILD ── */
-const navTabs = document.getElementById("navTabs");
-const mainEl  = document.getElementById("main");
+if(model.type!=="dir") continue;
 
-languages.forEach((lang, li) => {
+let modelCard=document.createElement("div");
+modelCard.className="model";
 
-  const btn = document.createElement("button");
-  btn.textContent = `${lang.emoji} ${lang.id}`;
-  if (li === 0) btn.classList.add("active");
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".nav-tabs button").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    document.querySelectorAll(".lang-section").forEach(s => s.classList.remove("visible"));
-    document.getElementById("sec-" + lang.id).classList.add("visible");
-  });
-  navTabs.appendChild(btn);
+let badgeClass=model.name;
 
-  const sec = document.createElement("section");
-  sec.className = "lang-section" + (li === 0 ? " visible" : "");
-  sec.id = "sec-" + lang.id;
+modelCard.innerHTML=`
+<div class="badge ${badgeClass}">${model.name}</div>
+<div class="audio-list"></div>
+`;
 
-  sec.innerHTML = `
-    <div class="lang-header">
-      <span class="lang-emoji">${lang.emoji}</span>
-      <h2 style="color:${lang.color}">${lang.id}</h2>
-    </div>`;
+modelGrid.appendChild(modelCard);
 
-  lang.ids.forEach(id => {
-    const key  = lang.id[0].toUpperCase() + id;
-    const text = transcripts[key] || "";
+const audioList=modelCard.querySelector(".audio-list");
 
-    const audioRows = lang.models.map(m => `
-      <div class="audio-row">
-        <div class="model-name">
-          <span class="dot" style="background:${m.color}"></span>
-          ${m.name}
-        </div>
-        <audio controls preload="none">
-          <source src="${lang.id}/${m.folder}/${lang.prefix}${id}.wav" type="audio/wav">
-        </audio>
-      </div>`).join("");
+const files=await fetch(model.url).then(r=>r.json());
 
-    const card = document.createElement("div");
-    card.className = "sample-card";
-    card.innerHTML = `
-      <div class="sentence-row">
-        <span class="sid">${key}</span>
-        <div class="sentence">${text}</div>
-      </div>
-      <div class="audio-rows">${audioRows}</div>`;
+for(const file of files){
 
-    sec.appendChild(card);
-  });
+if(file.name.endsWith(".wav")||file.name.endsWith(".mp3")){
 
-  mainEl.appendChild(sec);
-});
+let audioDiv=document.createElement("div");
+audioDiv.className="audio";
+
+audioDiv.innerHTML=`
+<div>${file.name}</div>
+<audio controls src="${file.download_url}"></audio>
+`;
+
+audioList.appendChild(audioDiv);
+
+}
+
+}
+
+}
+
+}
+
+}
+
+loadData();
 
 </script>
+
 </body>
 </html>
