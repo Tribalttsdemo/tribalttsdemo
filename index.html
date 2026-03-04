@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Tribal TTS Demo</title>
+<title>Tribal Language TTS Demo</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
@@ -12,7 +12,7 @@
 body{
 font-family:'Inter',sans-serif;
 margin:0;
-background:#f5f7fb;
+background:#f4f6fb;
 }
 
 header{
@@ -28,17 +28,27 @@ margin:auto;
 padding:40px 20px;
 }
 
+.language{
+margin-bottom:60px;
+}
+
+.language h2{
+border-bottom:2px solid #e5e7eb;
+padding-bottom:8px;
+}
+
 .sample{
 background:white;
 border-radius:12px;
 padding:20px;
-margin-bottom:25px;
+margin-top:20px;
 box-shadow:0 8px 20px rgba(0,0,0,0.08);
 }
 
 .sentence{
 font-size:18px;
 margin-bottom:15px;
+line-height:1.6;
 }
 
 .audioRow{
@@ -72,6 +82,7 @@ width:200px;
 
 <header>
 <h1>Tribal Language TTS Demo</h1>
+<p>Audio comparison across models</p>
 </header>
 
 <div class="container" id="content"></div>
@@ -96,54 +107,75 @@ G5:"भारतीय राजनीति ते संस्कृति न
 
 };
 
-/* models / folders */
+/* model folders */
 
 const models = [
-{ name:"Glow-TTS", path:"glowtts" },
-{ name:"Glow-TTS Finetuned", path:"glowtts_finetuned" },
-{ name:"Indic Parler TTS", path:"indicparler" }
+{name:"Indic Parler TTS", folder:"indicparler"},
+{name:"Glow-TTS", folder:"glowtts"},
+{name:"Glow-TTS Finetuned", folder:"glowtts_finetuned"}
 ];
 
-const languages = ["Bhili","Gondi","Mundari","Santali"];
+/* audio ids */
+
+const languages = {
+
+Bhili: Array.from({length:30},(_,i)=>i+1),
+
+Gondi: Array.from({length:30},(_,i)=>i+1),
+
+Mundari: Array.from({length:30},(_,i)=>i+1),
+
+Santali: [1,2,3,4,5,6,7,8,9,10,21,22,23,24,25,26,27,28,29,30]
+
+};
 
 const container=document.getElementById("content");
 
-Object.keys(transcripts).forEach(id=>{
+/* build page */
 
-const sentence=transcripts[id];
+for(const lang in languages){
 
-const block=document.createElement("div");
+let section=document.createElement("div");
+section.className="language";
+section.innerHTML=`<h2>${lang}</h2>`;
+container.appendChild(section);
+
+languages[lang].forEach(id=>{
+
+let prefix=lang[0];
+
+let sentence = transcripts[prefix+id] || "";
+
+let block=document.createElement("div");
 block.className="sample";
 
 block.innerHTML=`<div class="sentence">${sentence}</div>`;
 
-const audioRow=document.createElement("div");
-audioRow.className="audioRow";
-
-languages.forEach(lang=>{
+let row=document.createElement("div");
+row.className="audioRow";
 
 models.forEach(model=>{
 
-const box=document.createElement("div");
+let box=document.createElement("div");
 box.className="audioBox";
 
-const src = `${lang}/${model.path}/${id}.wav`;
+let src=`${lang}/${model.folder}/${prefix}${id}.wav`;
 
 box.innerHTML=`
-<label>${lang} – ${model.name}</label>
-<audio controls src="${src}"></audio>
+<label>${model.name}</label>
+<audio controls preload="none" src="${src}"></audio>
 `;
 
-audioRow.appendChild(box);
+row.appendChild(box);
 
 });
 
-});
-
-block.appendChild(audioRow);
-container.appendChild(block);
+block.appendChild(row);
+section.appendChild(block);
 
 });
+
+}
 
 </script>
 
