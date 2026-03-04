@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tribal TTS Audio Demo</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+margin:40px;
+background:#f2f4f7;
+}
+
+h1{
+text-align:center;
+}
+
+.language{
+background:white;
+margin-top:30px;
+padding:20px;
+border-radius:8px;
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+.model{
+margin-top:15px;
+padding-left:20px;
+}
+
+.audio{
+margin:10px 0;
+padding:8px;
+background:#fafafa;
+border-radius:6px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Tribal Language TTS Audio Samples</h1>
+
+<div id="content"></div>
+
+<script>
+
+const api = "https://api.github.com/repos/Tribalttsdemo/tribalttsdemo/contents";
+
+async function loadData(){
+
+const container = document.getElementById("content");
+const languages = await fetch(api).then(r=>r.json());
+
+for(const lang of languages){
+
+if(lang.type !== "dir") continue;
+
+let langDiv=document.createElement("div");
+langDiv.className="language";
+langDiv.innerHTML=`<h2>${lang.name}</h2>`;
+container.appendChild(langDiv);
+
+const models=await fetch(lang.url).then(r=>r.json());
+
+for(const model of models){
+
+if(model.type !== "dir") continue;
+
+let modelDiv=document.createElement("div");
+modelDiv.className="model";
+modelDiv.innerHTML=`<h3>${model.name}</h3>`;
+langDiv.appendChild(modelDiv);
+
+const files=await fetch(model.url).then(r=>r.json());
+
+for(const file of files){
+
+if(file.name.endsWith(".wav") || file.name.endsWith(".mp3")){
+
+let audio=document.createElement("div");
+audio.className="audio";
+
+audio.innerHTML=`
+<p>${file.name}</p>
+<audio controls src="${file.download_url}"></audio>
+`;
+
+modelDiv.appendChild(audio);
+
+}
+
+}
+
+}
+
+}
+
+}
+
+loadData();
+
+</script>
+
+</body>
+</html>
