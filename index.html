@@ -23,11 +23,10 @@ body {
 .hero h1 { font-size: 42px; margin-bottom: 10px; }
 .hero p  { opacity: .9; font-size: 16px; font-weight: 300; }
 
-/* ── MODEL LEGEND ── */
 .legend {
   display: flex; justify-content: center;
   flex-wrap: wrap; gap: 12px;
-  padding: 18px 20px;
+  padding: 16px 20px;
   background: white;
   border-bottom: 1px solid #e5e7eb;
 }
@@ -36,14 +35,10 @@ body {
   font-size: 13px; font-weight: 600;
   padding: 6px 14px; border-radius: 999px;
 }
-.indicparler       { background: #e0e7ff; color: #3730a3; }
-.glowtts           { background: #dcfce7; color: #166534; }
-.glowtts_finetuned { background: #fef3c7; color: #92400e; }
 
-/* ── NAV ── */
 .nav-wrap {
   position: sticky; top: 0; z-index: 999;
-  background: rgba(255,255,255,0.93);
+  background: rgba(255,255,255,0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid #e5e7eb;
   box-shadow: 0 2px 10px rgba(0,0,0,0.06);
@@ -77,7 +72,6 @@ body {
   border-bottom: 2px solid #e5e7eb;
 }
 
-/* ── CARD ── */
 .sample-card {
   background: white; border-radius: 16px;
   padding: 24px 28px; margin-bottom: 20px;
@@ -104,7 +98,6 @@ body {
   letter-spacing: 0.05em;
 }
 
-/* ── AUDIO ROWS ── */
 .audio-rows { display: flex; flex-direction: column; gap: 10px; }
 .audio-row {
   display: flex; align-items: center; gap: 14px;
@@ -118,10 +111,12 @@ body {
   padding: 5px 14px; border-radius: 20px;
   font-size: 12px; font-weight: 600;
 }
+.indicparler       { background: #e0e7ff; color: #3730a3; }
+.glowtts           { background: #dcfce7; color: #166534; }
+.glowtts_finetuned { background: #fef3c7; color: #92400e; }
 
 audio { flex: 1; height: 34px; min-width: 0; }
 
-/* ── LOADING ── */
 .loading {
   text-align: center; padding: 60px 20px;
   color: #6b7280; font-size: 15px;
@@ -157,11 +152,10 @@ audio { flex: 1; height: 34px; min-width: 0; }
   <p>Anonymous Submission · InterSpeech 2026</p>
 </div>
 
-<!-- MODEL LEGEND -->
 <div class="legend">
-  <div class="legend-item indicparler">🟣 Indic Parler TTS</div>
-  <div class="legend-item glowtts">🟢 Glow TTS</div>
-  <div class="legend-item glowtts_finetuned">🟡 Glow TTS Finetuned</div>
+  <div class="legend-item indicparler">● Indic Parler TTS</div>
+  <div class="legend-item glowtts">● Glow TTS</div>
+  <div class="legend-item glowtts_finetuned">● Glow TTS Finetuned</div>
 </div>
 
 <div class="nav-wrap">
@@ -182,7 +176,6 @@ audio { flex: 1; height: 34px; min-width: 0; }
 
 <script>
 
-/* ── TRANSCRIPTS ── */
 const transcripts = {
   B1:"तिनाई दावो कियों के तिनाई कीना मनखा हाथे हमेशा आलयोतों के तीनान निवास लड़ाई दंगड़ामा मारी सके से।",
   B2:"तिनायु दावो करियों के केजरीवाल आपड़ी सरकार ने हार थी, जनता नौ ध्यान हटाड़वा नीं कोशिश करी रियों हतो।",
@@ -204,7 +197,6 @@ const transcripts = {
   B18:"पेलखी शताब्दी में एरे मेरा लद्दाख कुषण सम्राज्य न एक भाग्य।",
   B19:"मारी हाथे टेकामजी आवी रा छे",
   B20:"कागद नी रसीदियों इंस्‍टाकार्ट नी दौलत से, अनें तिनां फेर सब टैम आपड़ी कन राखवुं जोवे।",
-
   M1:"इनाम‌हातु रे पुरातत्त्वविदको गोम, जौ, चउलि, दालि, बाजरा, मटर ओडोः तिलमिङ रेअ: जङको नम तदा ।",
   M2:"एना मेनते इनि: इमिन निदा पुणे महाराष्ट्र ते वाराणसी उत्तर प्रदेशबोओ: कुंदुडी दिसुम रअः रेल गाड़ी जिलिंग गाड़ि सब केदए ।",
   M3:"इनिःया निशाना तइकेना उमिआन मंदिर, एनरे गुजरात रेआ सोमनाथ मंदिर ओ जामा कान ताइकेना ।",
@@ -225,7 +217,6 @@ const transcripts = {
   M18:"इनिःया निशाना तइकेना उमिआन मंदिर, एनरे गुजरात रेआ सोमनाथ मंदिर ओ जामा कान ताइकेना ।",
   M19:"मेनदो आम सेनाकानाम जाआनाः नाम मेनते।",
   M20:"उबर होरा रे सेसेन तन जागार साहिति ओड़ो: होड़ो गोट कोआ लेपेल चिपिना राष्ट्रीय, अन्तराष्ट्रीय लेकाते ओनोल सहिति होरा तेगे उरूमोआ।",
-
   S1:"ᱤᱧ ᱫᱤᱥᱚᱢ ᱞᱟᱦᱟᱱᱛᱤ ᱚᱪᱚ ᱠᱟᱛᱮ ᱱᱚᱶᱟ ᱪᱮᱛᱟᱱ ᱴᱷᱟᱶᱛᱮ ᱨᱟᱠᱟᱵ ᱚᱪᱚᱭᱨᱮ ᱦᱚᱲᱠᱚ ᱱᱚᱶᱟ ᱢᱩᱲᱩᱫ ᱵᱟᱴᱮᱴ ᱞᱟᱹᱜᱤᱫ ᱥᱟᱱᱟᱢ ᱫᱤᱥᱚᱢ ᱦᱚᱲᱠᱚᱧ ᱥᱟᱨᱦᱟᱣᱮᱫᱯᱮᱭᱟ ᱾",
   S2:"ᱠᱟᱹᱣᱰᱤ ᱠᱟᱹᱨᱡᱤ ᱱᱤᱨᱢᱚᱞᱟ ᱥᱤᱛᱟᱨᱚᱢᱚᱬᱚ ᱡᱤ ᱟᱨ ᱩᱱᱤᱭᱟᱜ ᱥᱟᱱᱟᱢ ᱜᱟᱫᱮᱞ ᱫᱚ ᱟᱹᱰᱤ ᱟᱹᱰᱤ ᱥᱟᱨᱦᱟᱣ ᱧᱟᱢ ᱦᱚᱠᱨᱤᱱᱜᱮ ᱾",
   S3:"ᱜᱟᱛᱮ ᱠᱚ, ᱱᱚᱶᱟ ᱵᱚᱡᱮᱴ ᱫᱚ ᱥᱟᱶᱛᱟᱨᱤᱱ ᱥᱟᱱᱟᱢ ᱛᱷᱚᱠ ᱦᱚᱲᱠᱚ ᱫᱟᱲᱮ ᱮᱢᱚᱜᱚᱜ ᱵᱚᱡᱮᱴ ᱠᱟᱱᱟ ᱾",
@@ -246,7 +237,6 @@ const transcripts = {
   S18:"ᱜᱟᱛᱮ ᱠᱚ, ᱱᱚᱶᱟ ᱵᱚᱡᱮᱴ ᱫᱚ ᱥᱟᱶᱛᱟᱨᱤᱱ ᱥᱟᱱᱟᱢ ᱛᱷᱚᱠ ᱦᱚᱲᱠᱚ ᱫᱟᱲᱮ ᱮᱢᱚᱜᱚᱜ ᱵᱚᱡᱮᱴ ᱠᱟᱱᱟ ᱾",
   S19:"ᱱᱚᱶᱟ ᱫᱚ ᱟᱹᱛᱩᱼᱨᱮᱝᱜᱮᱡᱼ ᱪᱟᱹᱥᱤ ᱢᱩᱞᱤᱭᱟᱹᱠᱚ ᱱᱟᱯᱟᱭ ᱥᱤᱜᱤᱞᱚᱜ ᱨᱮᱭᱟᱜ ᱵᱚᱡᱮᱡ ᱠᱟᱱᱟ ᱾",
   S20:"ᱪᱟᱞᱟᱣᱮᱱ ᱑0 ᱥᱮᱨᱢᱟ ᱨᱮ ᱒᱕ ᱠᱟᱹᱨᱩᱲ ᱦᱚᱲ ᱫᱚ ᱨᱮᱝᱜᱮᱡ ᱛᱟᱹᱞᱠᱟᱹ ᱠᱷᱚᱱ ᱵᱟᱦᱨᱮᱛᱮ ᱚᱰᱚᱠ ᱟᱠᱟᱱᱟ ᱾",
-
   G1:"निम्मट सपय जन ना संग उन्द बेरा पेर वड़्कसोरे नाकुन कुबैय गिर्रदा आयता।",
   G2:"तिकूर ता पोदेला सोन त लेहका चमके माले आकींग लेहका आन्ता",
   G3:"हुचुक हाट्कना मुन्ने नाकुन पुट्त इद कोगेत ते उन्द कुबैय गिर्रदा ता विषय ता बारे ते वेहले आता।",
@@ -264,33 +254,39 @@ const transcripts = {
   G15:"भारतीय राजनीति ते संस्कृति नीति ता गल्ला कुबेय कास मंता"
 };
 
-/* ── MODEL DISPLAY NAMES ── */
-const modelNames = {
-  "indicparler":       { label:"Indic Parler TTS",    cls:"indicparler" },
-  "glowtts":           { label:"Glow TTS",             cls:"glowtts" },
-  "glowtts_finetuned": { label:"Glow TTS Finetuned",   cls:"glowtts_finetuned" }
+/* ── LANGUAGE PREFIX MAP (handles any case from GitHub) ── */
+const langPrefix = {
+  "bhili":   "B",
+  "mundari": "M",
+  "santali": "S",
+  "gondi":   "G"
 };
 
-/* preferred display order */
+const modelNames = {
+  "indicparler":       { label:"Indic Parler TTS",  cls:"indicparler" },
+  "glowtts":           { label:"Glow TTS",           cls:"glowtts" },
+  "glowtts_finetuned": { label:"Glow TTS Finetuned", cls:"glowtts_finetuned" }
+};
+
 const modelOrder = ["indicparler", "glowtts", "glowtts_finetuned"];
 
 const api = "https://api.github.com/repos/Tribalttsdemo/tribalttsdemo/contents";
 
 function fileToKey(langName, fileName) {
-  const prefix = langName[0].toUpperCase();
+  /* use explicit map, fallback to first char uppercase */
+  const prefix = langPrefix[langName.toLowerCase()] || langName[0].toUpperCase();
   const num    = parseInt(fileName.replace(/\D/g, ""), 10);
   return prefix + num;
 }
 
 async function loadData() {
-
   const navInner  = document.getElementById("navInner");
   const container = document.getElementById("content");
 
   const root     = await fetch(api).then(r => r.json());
   const langDirs = root.filter(l => l.type === "dir");
 
-  /* build nav + empty sections */
+  /* build nav + empty sections first */
   langDirs.forEach((lang, li) => {
     const btn = document.createElement("button");
     btn.className   = "nav-btn" + (li === 0 ? " active" : "");
@@ -310,36 +306,34 @@ async function loadData() {
     container.appendChild(sec);
   });
 
-  /* load files per language */
+  /* load content per language */
   for (const lang of langDirs) {
-
     const sec       = document.getElementById("lang-" + lang.name);
     const modelList = await fetch(lang.url).then(r => r.json());
     const modelDirs = modelList.filter(m => m.type === "dir");
 
-    /* fetch all model files */
+    /* fetch files for each model folder */
     const modelData = {};
     for (const model of modelDirs) {
       const files = await fetch(model.url).then(r => r.json());
       modelData[model.name] = files
         .filter(f => f.name.endsWith(".wav") || f.name.endsWith(".mp3"))
         .sort((a, b) =>
-          parseInt(a.name.replace(/\D/g,''), 10) -
-          parseInt(b.name.replace(/\D/g,''), 10)
+          parseInt(a.name.replace(/\D/g,""), 10) -
+          parseInt(b.name.replace(/\D/g,""), 10)
         );
     }
 
-    /* union of all filenames, sorted numerically */
+    /* union of all filenames across models, sorted numerically */
     const allFileNames = [...new Set(
       Object.values(modelData).flat().map(f => f.name)
     )].sort((a, b) =>
-      parseInt(a.replace(/\D/g,''), 10) -
-      parseInt(b.replace(/\D/g,''), 10)
+      parseInt(a.replace(/\D/g,""), 10) -
+      parseInt(b.replace(/\D/g,""), 10)
     );
 
     /* one card per sentence */
     for (const fileName of allFileNames) {
-
       const key  = fileToKey(lang.name, fileName);
       const text = transcripts[key] || "";
 
@@ -354,15 +348,14 @@ async function loadData() {
 
       const audioRows = card.querySelector(".audio-rows");
 
-      /* show models in fixed order: indicparler → glowtts → glowtts_finetuned */
+      /* models in fixed order */
       const orderedModels = [
         ...modelOrder.filter(m => modelData[m]),
         ...Object.keys(modelData).filter(m => !modelOrder.includes(m))
       ];
 
       for (const modelFolder of orderedModels) {
-        const files = modelData[modelFolder];
-        const match = files.find(f => f.name === fileName);
+        const match = modelData[modelFolder].find(f => f.name === fileName);
         if (!match) continue;
 
         const info = modelNames[modelFolder] || { label: modelFolder, cls: "indicparler" };
