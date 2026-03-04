@@ -20,47 +20,51 @@ body {
   color: white;
   box-shadow: 0 8px 30px rgba(0,0,0,0.15);
 }
-
 .hero h1 { font-size: 42px; margin-bottom: 10px; }
-.hero p { opacity: .9; font-size: 16px; font-weight: 300; }
+.hero p  { opacity: .9; font-size: 16px; font-weight: 300; }
 
-/* ── STICKY NAV ── */
+/* ── MODEL LEGEND ── */
+.legend {
+  display: flex; justify-content: center;
+  flex-wrap: wrap; gap: 12px;
+  padding: 18px 20px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+.legend-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600;
+  padding: 6px 14px; border-radius: 999px;
+}
+.indicparler       { background: #e0e7ff; color: #3730a3; }
+.glowtts           { background: #dcfce7; color: #166534; }
+.glowtts_finetuned { background: #fef3c7; color: #92400e; }
+
+/* ── NAV ── */
 .nav-wrap {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background: rgba(255,255,255,0.92);
+  position: sticky; top: 0; z-index: 999;
+  background: rgba(255,255,255,0.93);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid #e5e7eb;
   box-shadow: 0 2px 10px rgba(0,0,0,0.06);
 }
 .nav-inner {
-  max-width: 1100px;
-  margin: auto;
-  display: flex;
-  gap: 6px;
-  padding: 10px 20px;
-  overflow-x: auto;
+  max-width: 1100px; margin: auto;
+  display: flex; gap: 6px;
+  padding: 10px 20px; overflow-x: auto;
 }
 .nav-btn {
-  flex-shrink: 0;
-  background: none;
-  border: none;
-  padding: 8px 20px;
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 600;
+  flex-shrink: 0; background: none; border: none;
+  padding: 8px 22px; border-radius: 999px;
+  font-size: 14px; font-weight: 600;
   font-family: 'Inter', sans-serif;
-  color: #6b7280;
-  cursor: pointer;
-  transition: all 0.2s;
+  color: #6b7280; cursor: pointer; transition: all 0.2s;
 }
-.nav-btn:hover { background: #f3f4f6; color: #1f2937; }
+.nav-btn:hover  { background: #f3f4f6; color: #1f2937; }
 .nav-btn.active { background: #6366f1; color: white; }
 
 .container {
-  max-width: 1100px;
-  margin: auto;
+  max-width: 1100px; margin: auto;
   padding: 40px 20px 80px;
 }
 
@@ -68,19 +72,15 @@ body {
 .language.visible { display: block; }
 
 .lang-heading {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 24px;
-  padding-bottom: 12px;
+  font-size: 28px; font-weight: 700;
+  margin-bottom: 24px; padding-bottom: 12px;
   border-bottom: 2px solid #e5e7eb;
 }
 
 /* ── CARD ── */
 .sample-card {
-  background: white;
-  border-radius: 16px;
-  padding: 24px 28px;
-  margin-bottom: 20px;
+  background: white; border-radius: 16px;
+  padding: 24px 28px; margin-bottom: 20px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.07);
   transition: 0.25s;
 }
@@ -90,70 +90,62 @@ body {
 }
 
 .transcript {
-  font-size: 17px;
-  font-weight: 500;
-  line-height: 1.7;
-  margin-bottom: 20px;
+  font-size: 17px; font-weight: 500;
+  line-height: 1.7; margin-bottom: 20px;
   color: #111827;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  display: flex; align-items: flex-start; gap: 10px;
 }
 .tid {
   flex-shrink: 0;
-  font-size: 11px;
-  font-weight: 700;
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  padding: 3px 8px;
-  color: #6b7280;
-  margin-top: 3px;
+  font-size: 11px; font-weight: 700;
+  background: #f3f4f6; border: 1px solid #e5e7eb;
+  border-radius: 6px; padding: 3px 8px;
+  color: #6b7280; margin-top: 3px;
   letter-spacing: 0.05em;
 }
 
 /* ── AUDIO ROWS ── */
 .audio-rows { display: flex; flex-direction: column; gap: 10px; }
-
 .audio-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 10px 14px;
-  border-radius: 10px;
+  display: flex; align-items: center; gap: 14px;
+  padding: 10px 14px; border-radius: 10px;
   border: 1px solid #e5e7eb;
 }
 
 .badge {
-  flex-shrink: 0;
-  width: 170px;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
+  flex-shrink: 0; width: 200px;
+  display: inline-flex; align-items: center;
+  padding: 5px 14px; border-radius: 20px;
+  font-size: 12px; font-weight: 600;
 }
-
-.indicparler  { background: #e0e7ff; color: #3730a3; }
-.glowtts      { background: #dcfce7; color: #166534; }
-.glowtts_finetuned { background: #fef3c7; color: #92400e; }
 
 audio { flex: 1; height: 34px; min-width: 0; }
 
+/* ── LOADING ── */
+.loading {
+  text-align: center; padding: 60px 20px;
+  color: #6b7280; font-size: 15px;
+}
+.spinner {
+  width: 36px; height: 36px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #6366f1;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
 .footer {
-  text-align: center;
-  padding: 36px;
-  color: #9ca3af;
-  font-size: 13px;
+  text-align: center; padding: 36px;
+  color: #9ca3af; font-size: 13px;
   border-top: 1px solid #e5e7eb;
 }
 
-@media(max-width:560px){
+@media(max-width: 560px) {
   .audio-row { flex-direction: column; align-items: flex-start; }
   .badge { width: auto; }
-  audio { width: 100%; }
+  audio  { width: 100%; }
 }
 
 </style>
@@ -165,11 +157,22 @@ audio { flex: 1; height: 34px; min-width: 0; }
   <p>Anonymous Submission · InterSpeech 2026</p>
 </div>
 
+<!-- MODEL LEGEND -->
+<div class="legend">
+  <div class="legend-item indicparler">🟣 Indic Parler TTS</div>
+  <div class="legend-item glowtts">🟢 Glow TTS</div>
+  <div class="legend-item glowtts_finetuned">🟡 Glow TTS Finetuned</div>
+</div>
+
 <div class="nav-wrap">
   <div class="nav-inner" id="navInner"></div>
 </div>
 
 <div class="container">
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    Loading audio samples…
+  </div>
   <div id="content"></div>
 </div>
 
@@ -265,16 +268,17 @@ const transcripts = {
 const modelNames = {
   "indicparler":       { label:"Indic Parler TTS",    cls:"indicparler" },
   "glowtts":           { label:"Glow TTS",             cls:"glowtts" },
-  "glowtts_finetuned": { label:"Glow TTS (Finetuned)", cls:"glowtts_finetuned" }
+  "glowtts_finetuned": { label:"Glow TTS Finetuned",   cls:"glowtts_finetuned" }
 };
 
-/* ── GITHUB API ── */
+/* preferred display order */
+const modelOrder = ["indicparler", "glowtts", "glowtts_finetuned"];
+
 const api = "https://api.github.com/repos/Tribalttsdemo/tribalttsdemo/contents";
 
-/* map filename like "b1.wav" → transcript key "B1" */
 function fileToKey(langName, fileName) {
   const prefix = langName[0].toUpperCase();
-  const num    = fileName.replace(/\D/g, "");
+  const num    = parseInt(fileName.replace(/\D/g, ""), 10);
   return prefix + num;
 }
 
@@ -283,15 +287,13 @@ async function loadData() {
   const navInner  = document.getElementById("navInner");
   const container = document.getElementById("content");
 
-  const languages = await fetch(api).then(r => r.json());
-  const langDirs  = languages.filter(l => l.type === "dir");
+  const root     = await fetch(api).then(r => r.json());
+  const langDirs = root.filter(l => l.type === "dir");
 
-  /* build nav + sections first */
+  /* build nav + empty sections */
   langDirs.forEach((lang, li) => {
-
-    /* nav button */
     const btn = document.createElement("button");
-    btn.className  = "nav-btn" + (li === 0 ? " active" : "");
+    btn.className   = "nav-btn" + (li === 0 ? " active" : "");
     btn.textContent = lang.name;
     btn.addEventListener("click", () => {
       document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
@@ -301,7 +303,6 @@ async function loadData() {
     });
     navInner.appendChild(btn);
 
-    /* section */
     const sec = document.createElement("div");
     sec.className = "language" + (li === 0 ? " visible" : "");
     sec.id = "lang-" + lang.name;
@@ -309,37 +310,41 @@ async function loadData() {
     container.appendChild(sec);
   });
 
-  /* now load audio per language */
+  /* load files per language */
   for (const lang of langDirs) {
 
-    const sec    = document.getElementById("lang-" + lang.name);
-    const models = await fetch(lang.url).then(r => r.json());
-    const modelDirs = models.filter(m => m.type === "dir");
+    const sec       = document.getElementById("lang-" + lang.name);
+    const modelList = await fetch(lang.url).then(r => r.json());
+    const modelDirs = modelList.filter(m => m.type === "dir");
 
-    /* collect files per model */
+    /* fetch all model files */
     const modelData = {};
     for (const model of modelDirs) {
       const files = await fetch(model.url).then(r => r.json());
       modelData[model.name] = files
         .filter(f => f.name.endsWith(".wav") || f.name.endsWith(".mp3"))
-        .sort((a, b) => {
-          const na = parseInt(a.name.replace(/\D/g,''));
-          const nb = parseInt(b.name.replace(/\D/g,''));
-          return na - nb;
-        });
+        .sort((a, b) =>
+          parseInt(a.name.replace(/\D/g,''), 10) -
+          parseInt(b.name.replace(/\D/g,''), 10)
+        );
     }
 
-    /* get all unique file IDs across models */
-    const allFiles = Object.values(modelData)[0] || [];
+    /* union of all filenames, sorted numerically */
+    const allFileNames = [...new Set(
+      Object.values(modelData).flat().map(f => f.name)
+    )].sort((a, b) =>
+      parseInt(a.replace(/\D/g,''), 10) -
+      parseInt(b.replace(/\D/g,''), 10)
+    );
 
-    for (const file of allFiles) {
-      const key  = fileToKey(lang.name, file.name);
-      const text = transcripts[key] || file.name;
+    /* one card per sentence */
+    for (const fileName of allFileNames) {
+
+      const key  = fileToKey(lang.name, fileName);
+      const text = transcripts[key] || "";
 
       const card = document.createElement("div");
       card.className = "sample-card";
-
-      /* transcript */
       card.innerHTML = `
         <div class="transcript">
           <span class="tid">${key}</span>
@@ -349,9 +354,15 @@ async function loadData() {
 
       const audioRows = card.querySelector(".audio-rows");
 
-      /* one row per model */
-      for (const [modelFolder, files] of Object.entries(modelData)) {
-        const match = files.find(f => f.name === file.name);
+      /* show models in fixed order: indicparler → glowtts → glowtts_finetuned */
+      const orderedModels = [
+        ...modelOrder.filter(m => modelData[m]),
+        ...Object.keys(modelData).filter(m => !modelOrder.includes(m))
+      ];
+
+      for (const modelFolder of orderedModels) {
+        const files = modelData[modelFolder];
+        const match = files.find(f => f.name === fileName);
         if (!match) continue;
 
         const info = modelNames[modelFolder] || { label: modelFolder, cls: "indicparler" };
@@ -370,6 +381,8 @@ async function loadData() {
       sec.appendChild(card);
     }
   }
+
+  document.getElementById("loading").style.display = "none";
 }
 
 loadData();
