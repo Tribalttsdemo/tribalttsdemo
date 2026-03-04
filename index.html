@@ -34,7 +34,6 @@
     line-height: 1.6;
   }
 
-  /* ── HERO ── */
   header {
     background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, var(--accent) 100%);
     color: white;
@@ -81,166 +80,105 @@
     font-size: 13px;
     opacity: 0.8;
   }
-  .header-meta span {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
+  .header-meta span { display: flex; align-items: center; gap: 6px; }
 
-  /* ── NAV TABS ── */
   .nav-wrap {
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: sticky; top: 0; z-index: 100;
     background: rgba(255,255,255,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     box-shadow: 0 2px 12px rgba(0,0,0,0.05);
   }
   .nav-tabs {
-    display: flex;
-    gap: 4px;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 10px 20px;
-    overflow-x: auto;
+    display: flex; gap: 4px;
+    max-width: 900px; margin: 0 auto;
+    padding: 10px 20px; overflow-x: auto;
   }
   .nav-tabs button {
-    flex-shrink: 0;
-    background: none;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-muted);
-    cursor: pointer;
+    flex-shrink: 0; background: none; border: none;
+    padding: 8px 20px; border-radius: 999px;
+    font-size: 14px; font-weight: 500;
+    color: var(--text-muted); cursor: pointer;
     transition: all 0.2s;
   }
   .nav-tabs button:hover { background: var(--surface2); color: var(--text); }
-  .nav-tabs button.active {
-    background: var(--primary);
-    color: white;
-  }
+  .nav-tabs button.active { background: var(--primary); color: white; }
 
-  /* ── MAIN ── */
-  main {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 48px 20px 80px;
-  }
+  main { max-width: 960px; margin: 0 auto; padding: 48px 20px 80px; }
 
-  /* ── LANGUAGE SECTION ── */
   .lang-section { display: none; }
   .lang-section.visible { display: block; }
 
   .lang-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 32px;
+    display: flex; align-items: center;
+    gap: 14px; margin-bottom: 32px;
   }
   .lang-icon {
-    width: 48px; height: 48px;
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    flex-shrink: 0;
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center;
+    justify-content: center; font-size: 24px; flex-shrink: 0;
   }
-  .lang-header h2 {
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-  .lang-header p {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-top: 2px;
-  }
+  .lang-header h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; }
+  .lang-header p { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
 
-  /* ── SAMPLE CARD ── */
   .sample-card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 28px;
-    margin-bottom: 20px;
+    padding: 28px; margin-bottom: 20px;
     box-shadow: var(--shadow);
     transition: box-shadow 0.2s, transform 0.2s;
   }
-  .sample-card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
-  }
+  .sample-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
 
   .card-top {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    margin-bottom: 20px;
+    display: flex; align-items: flex-start;
+    gap: 14px; margin-bottom: 22px;
   }
   .sentence-id {
     flex-shrink: 0;
     background: var(--surface2);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 4px 10px;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-    margin-top: 3px;
+    border-radius: 8px; padding: 4px 10px;
+    font-size: 11px; font-weight: 600;
+    color: var(--text-muted); letter-spacing: 0.05em; margin-top: 3px;
   }
   .sentence-text {
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 1.65;
-    color: var(--text);
+    font-size: 17px; font-weight: 500;
+    line-height: 1.65; color: var(--text);
   }
 
-  /* ── AUDIO GRID ── */
   .audio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 14px;
   }
   .audio-box {
     background: var(--surface2);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 16px;
+    border-radius: 12px; padding: 14px 16px;
   }
   .audio-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
     margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    display: flex; align-items: center; gap: 6px;
   }
-  .dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  audio {
-    width: 100%;
-    height: 36px;
-  }
-  audio::-webkit-media-controls-panel { background: #eff6ff; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
-  /* ── FOOTER ── */
+  audio { width: 100%; height: 36px; }
+
+  .no-audio {
+    font-size: 12px; color: #94a3b8;
+    font-style: italic; padding: 6px 0;
+  }
+
   footer {
-    text-align: center;
-    padding: 32px 20px;
-    font-size: 13px;
-    color: var(--text-muted);
+    text-align: center; padding: 32px 20px;
+    font-size: 13px; color: var(--text-muted);
     border-top: 1px solid var(--border);
   }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 600px) {
     .audio-grid { grid-template-columns: 1fr; }
     .sample-card { padding: 18px; }
@@ -250,10 +188,9 @@
 </head>
 <body>
 
-<!-- HERO -->
 <header>
-  <div class="badge">🔒 Anonymous Submission · InterSpeech 2025</div>
-  <h1>Tribal Language TTS</h1>
+  <div class="badge">🔒 Anonymous Submission · InterSpeech</div>
+  <h1>Tribal Language TTS Demo</h1>
   <p class="subtitle">Audio quality evaluation across TTS models for low-resource Indian tribal languages</p>
   <div class="header-meta">
     <span>🗣️ 4 Languages</span>
@@ -262,22 +199,19 @@
   </div>
 </header>
 
-<!-- STICKY NAV -->
 <div class="nav-wrap">
   <div class="nav-tabs" id="navTabs"></div>
 </div>
 
-<!-- MAIN CONTENT -->
 <main id="main"></main>
 
-<!-- FOOTER -->
 <footer>
   This demo page is part of an anonymous submission for peer review. Author identities are withheld.
 </footer>
 
 <script>
-/* ── DATA ── */
 
+/* ── TRANSCRIPTS ── */
 const transcripts = {
   B1:"तिनाई दावो कियों के तिनाई कीना मनखा हाथे हमेशा आलयोतों के तीनान निवास लड़ाई दंगड़ामा मारी सके से।",
   B2:"तिनायु दावो करियों के केजरीवाल आपड़ी सरकार ने हार थी, जनता नौ ध्यान हटाड़वा नीं कोशिश करी रियों हतो।",
@@ -359,51 +293,60 @@ const transcripts = {
   G15:"भारतीय राजनीति ते संस्कृति नीति ता गल्ला कुबेय कास मंता"
 };
 
-const models = [
-  { name:"Indic Parler TTS",    folder:"indicparler",     color:"#4f46e5" },
-  { name:"Glow-TTS",            folder:"glowtts",         color:"#0891b2" },
-  { name:"Glow-TTS Finetuned",  folder:"glowtts_finetuned", color:"#7c3aed" }
+/* ── MODELS per language ── */
+/* Santali → only glowtts + indicparler (no glowtts_finetuned) */
+const allModels = [
+  { name:"Indic Parler TTS",   folder:"indicparler",       color:"#4f46e5" },
+  { name:"Glow-TTS",           folder:"glowtts",           color:"#0891b2" },
+  { name:"Glow-TTS Finetuned", folder:"glowtts_finetuned", color:"#7c3aed" }
 ];
 
+/* ── LANGUAGES ── */
 const languages = [
   {
     id:"Bhili", label:"Bhili", emoji:"🌿",
-    bg:"linear-gradient(135deg,#eef2ff,#e0e7ff)",
-    color:"#4f46e5",
+    bg:"linear-gradient(135deg,#eef2ff,#e0e7ff)", color:"#4f46e5",
     desc:"Indo-Aryan tribal language · Rajasthan & Gujarat",
-    ids: Array.from({length:20}, (_,i) => i+1)
+    prefix:"b",
+    ids: Array.from({length:20}, (_,i) => i+1),
+    models: allModels
   },
   {
     id:"Mundari", label:"Mundari", emoji:"🌾",
-    bg:"linear-gradient(135deg,#f0fdf4,#dcfce7)",
-    color:"#16a34a",
+    bg:"linear-gradient(135deg,#f0fdf4,#dcfce7)", color:"#16a34a",
     desc:"Austroasiatic tribal language · Jharkhand & Odisha",
-    ids: Array.from({length:20}, (_,i) => i+1)
+    prefix:"m",
+    ids: Array.from({length:20}, (_,i) => i+1),
+    models: allModels
   },
   {
     id:"Santali", label:"Santali", emoji:"🪘",
-    bg:"linear-gradient(135deg,#fff7ed,#ffedd5)",
-    color:"#ea580c",
+    bg:"linear-gradient(135deg,#fff7ed,#ffedd5)", color:"#ea580c",
     desc:"Austroasiatic language · Written in Ol Chiki script",
-    ids: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+    prefix:"s",
+    ids: Array.from({length:20}, (_,i) => i+1),
+    models: [
+      { name:"Indic Parler TTS", folder:"indicparler", color:"#4f46e5" },
+      { name:"Glow-TTS",         folder:"glowtts",     color:"#0891b2" }
+    ]
   },
   {
     id:"Gondi", label:"Gondi", emoji:"🏞️",
-    bg:"linear-gradient(135deg,#fdf4ff,#fae8ff)",
-    color:"#9333ea",
+    bg:"linear-gradient(135deg,#fdf4ff,#fae8ff)", color:"#9333ea",
     desc:"Dravidian tribal language · Central India",
-    ids: Array.from({length:15}, (_,i) => i+1)
+    prefix:"g",
+    ids: Array.from({length:15}, (_,i) => i+1),
+    models: allModels
   }
 ];
 
-/* ── BUILD UI ── */
-
+/* ── BUILD PAGE ── */
 const navTabs = document.getElementById("navTabs");
 const mainEl  = document.getElementById("main");
 
 languages.forEach((lang, li) => {
 
-  /* nav tab */
+  /* nav button */
   const btn = document.createElement("button");
   btn.textContent = `${lang.emoji} ${lang.label}`;
   btn.dataset.lang = lang.id;
@@ -421,35 +364,39 @@ languages.forEach((lang, li) => {
   sec.className = "lang-section" + (li === 0 ? " visible" : "");
   sec.id = "sec-" + lang.id;
 
-  /* header */
   sec.innerHTML = `
     <div class="lang-header">
       <div class="lang-icon" style="background:${lang.bg}; color:${lang.color}">${lang.emoji}</div>
       <div>
         <h2 style="color:${lang.color}">${lang.label}</h2>
-        <p>${lang.desc}</p>
+        <p>${lang.desc} &nbsp;·&nbsp; ${lang.ids.length} samples &nbsp;·&nbsp; ${lang.models.length} models</p>
       </div>
     </div>
   `;
 
-  /* cards */
   lang.ids.forEach(id => {
-    const prefix = lang.id[0];
-    const key    = prefix + id;
-    const text   = transcripts[key] || "";
+
+    /* transcript key: uppercase prefix + number, e.g. B1, M3, S10, G5 */
+    const key  = lang.id[0].toUpperCase() + id;
+    const text = transcripts[key] || "";
 
     const card = document.createElement("div");
     card.className = "sample-card";
 
-    const audioBoxes = models.map(m => `
-      <div class="audio-box">
-        <div class="audio-label">
-          <span class="dot" style="background:${m.color}"></span>
-          ${m.name}
-        </div>
-        <audio controls preload="none" src="${lang.id}/${m.folder}/${key}.wav"></audio>
-      </div>
-    `).join("");
+    /* audio boxes — one per model, path: LanguageName/folder/prefix+id.wav */
+    const audioBoxes = lang.models.map(m => {
+      const src = `${lang.id}/${m.folder}/${lang.prefix}${id}.wav`;
+      return `
+        <div class="audio-box">
+          <div class="audio-label">
+            <span class="dot" style="background:${m.color}"></span>
+            ${m.name}
+          </div>
+          <audio controls preload="none">
+            <source src="${src}" type="audio/wav">
+          </audio>
+        </div>`;
+    }).join("");
 
     card.innerHTML = `
       <div class="card-top">
@@ -464,7 +411,7 @@ languages.forEach((lang, li) => {
 
   mainEl.appendChild(sec);
 });
-</script>
 
+</script>
 </body>
 </html>
