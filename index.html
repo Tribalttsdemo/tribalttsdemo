@@ -24,7 +24,7 @@ text-align:center;
 
 .hero h1{
 margin:0;
-font-size:40px;
+font-size:38px;
 }
 
 .container{
@@ -33,17 +33,25 @@ margin:auto;
 padding:40px 20px;
 }
 
+.language{
+margin-bottom:60px;
+}
+
+.language h2{
+margin-bottom:20px;
+}
+
 .sample{
 background:white;
 border-radius:14px;
-padding:24px;
-margin-bottom:25px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
+padding:20px;
+margin-bottom:20px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
 }
 
 .sentence{
 font-size:18px;
-margin-bottom:18px;
+margin-bottom:15px;
 line-height:1.6;
 }
 
@@ -78,13 +86,13 @@ width:220px;
 <p>Speech synthesis comparison across models</p>
 </div>
 
-<div class="container" id="samples"></div>
+<div class="container" id="content"></div>
 
 <script>
 
-const transcripts = {
+const data = {
 
-B:[
+Bhili:[
 "तिनाई दावो कियों के तिनाई कीना मनखा हाथे हमेशा आलयोतों के तीनान निवास लड़ाई दंगड़ामा मारी सके से।",
 "तिनायु दावो करियों के केजरीवाल आपड़ी सरकार ने हार थी, जनता नौ ध्यान हटाड़वा नीं कोशिश करी रियों हतो।",
 "पेलखी शताब्दी में एरे मेरा लद्दाख कुषण सम्राज्य न एक भाग्य।",
@@ -92,7 +100,7 @@ B:[
 "कागद नी रसीदियों इंस्‍टाकार्ट नी दौलत से, अनें तिनां फेर सब टैम आपड़ी कन राखवुं जोवे।"
 ],
 
-M:[
+Mundari:[
 "इनाम‌हातु रे पुरातत्त्वविदको गोम, जौ, चउलि, दालि, बाजरा, मटर ओडोः तिलमिङ रेअ: जङको नम तदा ।",
 "एना मेनते इनि: इमिन निदा पुणे महाराष्ट्र ते वाराणसी उत्तर प्रदेशबोओ: कुंदुडी दिसुम रअः रेल गाड़ी जिलिंग गाड़ि सब केदए ।",
 "इनिःया निशाना तइकेना उमिआन मंदिर, एनरे गुजरात रेआ सोमनाथ मंदिर ओ जामा कान ताइकेना ।",
@@ -100,68 +108,74 @@ M:[
 "उबर होरा रे सेसेन तन जागार साहिति ओड़ो: होड़ो गोट कोआ लेपेल चिपिना राष्ट्रीय, अन्तराष्ट्रीय लेकाते ओनोल सहिति होरा तेगे उरूमोआ।"
 ],
 
-S:[
+Santali:[
 "ᱤᱧ ᱫᱤᱥᱚᱢ ᱞᱟᱦᱟᱱᱛᱤ ᱚᱪᱚ ᱠᱟᱛᱮ ᱱᱚᱶᱟ ᱪᱮᱛᱟᱱ ᱴᱷᱟᱶᱛᱮ ᱨᱟᱠᱟᱵ ᱚᱪᱚᱭᱨᱮ ᱦᱚᱲᱠᱚ ᱱᱚᱶᱟ ᱢᱩᱲᱩᱫ ᱵᱟᱴᱮᱴ ᱞᱟᱹᱜᱤᱫ ᱥᱟᱱᱟᱢ ᱫᱤᱥᱚᱢ ᱦᱚᱲᱠᱚᱧ ᱥᱟᱨᱦᱟᱣᱮᱫᱯᱮᱭᱟ",
 "ᱠᱟᱹᱣᱰᱤ ᱠᱟᱹᱨᱡᱤ ᱱᱤᱨᱢᱚᱞᱟ ᱥᱤᱛᱟᱨᱚᱢᱚᱬᱚ ᱡᱤ ᱟᱨ ᱩᱱᱤᱭᱟᱜ ᱥᱟᱱᱟᱢ ᱜᱟᱫᱮᱞ ᱫᱚ ᱟᱹᱰᱤ ᱟᱹᱰᱤ ᱥᱟᱨᱦᱟᱣ ᱧᱟᱢ ᱦᱚᱠᱨᱤᱱᱜᱮ",
 "ᱜᱟᱛᱮ ᱠᱚ, ᱱᱚᱶᱟ ᱵᱚᱡᱮᱴ ᱫᱚ ᱥᱟᱶᱛᱟᱨᱤᱱ ᱥᱟᱱᱟᱢ ᱛᱷᱚᱠ ᱦᱚᱲᱠᱚ ᱫᱟᱲᱮ ᱮᱢᱚᱜᱚᱜ ᱵᱚᱡᱮᱴ ᱠᱟᱱᱟ",
 "ᱱᱚᱶᱟ ᱫᱚ ᱟᱹᱛᱩᱼᱨᱮᱝᱜᱮᱡᱼ ᱪᱟᱹᱥᱤ ᱢᱩᱞᱤᱭᱟᱹᱠᱚ ᱱᱟᱯᱟᱭ ᱥᱤᱜᱤᱞᱚᱜ ᱨᱮᱭᱟᱜ ᱵᱚᱡᱮᱡ ᱠᱟᱱᱟ",
 "ᱪᱟᱞᱟᱣᱮᱱ 10 ᱥᱮᱨᱢᱟ ᱨᱮ 25 ᱠᱟᱹᱨᱩᱲ ᱦᱚᱲ ᱫᱚ ᱨᱮᱝᱜᱮᱡ ᱛᱟᱹᱞᱠᱟᱹ ᱠᱷᱚᱱ ᱵᱟᱦᱨᱮᱛᱮ ᱚᱰᱚᱠ ᱟᱠᱟᱱᱟ"
+],
+
+Gondi:[
+"निम्मट सपय जन ना संग उन्द बेरा पेर वड़्कसोरे नाकुन कुबैय गिर्रदा आयता।",
+"तिकूर ता पोदेला सोन त लेहका चमके माले आकींग लेहका आन्ता",
+"हुचुक हाट्कना मुन्ने नाकुन पुट्त इद कोगेत ते उन्द कुबैय गिर्रदा ता विषय ता बारे ते वेहले आता।",
+"भारत ते तिन्दाना उन्द रीति आंद, केवल अंकाल तून मायहन आयो।",
+"भारतीय राजनीति ते संस्कृति नीति ता गल्ला कुबेय कास मंता"
 ]
 
 };
 
-const container=document.getElementById("samples");
+const container=document.getElementById("content");
 
-function createSamples(prefix){
+for(const language in data){
 
-for(let i=0;i<5;i++){
+let section=document.createElement("div");
+section.className="language";
+section.innerHTML=`<h2>${language}</h2>`;
+container.appendChild(section);
 
-const sentence=transcripts[prefix][i];
-const id=i+1;
+data[language].forEach((sentence,i)=>{
 
-const block=document.createElement("div");
+let id=i+1;
+
+let block=document.createElement("div");
 block.className="sample";
 
 block.innerHTML=`
+
 <div class="sentence">${sentence}</div>
 
 <table>
+
 <tr>
 <th>Model</th>
 <th>Audio</th>
 </tr>
 
 <tr>
-<td>Indic Parler TTS – Hindi Male</td>
-<td><audio controls src="${prefix}hili/indicparler/${prefix}${id}.wav"></audio></td>
-</tr>
-
-<tr>
-<td>Indic Parler TTS – Hindi Female</td>
-<td><audio controls src="${prefix}hili/indicparler/${prefix}${id+5}.wav"></audio></td>
+<td>Indic Parler TTS</td>
+<td><audio controls src="${language}/indicparler/${language[0]}${id}.wav"></audio></td>
 </tr>
 
 <tr>
 <td>Glow-TTS</td>
-<td><audio controls src="${prefix}hili/glowtts/${prefix}${id+10}.wav"></audio></td>
+<td><audio controls src="${language}/glowtts/${language[0]}${id}.wav"></audio></td>
 </tr>
 
 <tr>
-<td>Glow-TTS (Finetuned)</td>
-<td><audio controls src="${prefix}hili/glowtts_finetuned/${prefix}${id+15}.wav"></audio></td>
+<td>IndicTTS</td>
+<td><audio controls src="${language}/indictts/${language[0]}${id}.wav"></audio></td>
 </tr>
+
 </table>
 `;
 
-container.appendChild(block);
+section.appendChild(block);
+
+});
 
 }
-
-}
-
-createSamples("B");
-createSamples("M");
-createSamples("S");
 
 </script>
 
