@@ -89,14 +89,6 @@ body {
   color: #111827;
   display: flex; align-items: flex-start; gap: 10px;
 }
-.tid {
-  flex-shrink: 0;
-  font-size: 11px; font-weight: 700;
-  background: #f3f4f6; border: 1px solid #e5e7eb;
-  border-radius: 6px; padding: 3px 8px;
-  color: #6b7280; margin-top: 3px;
-  letter-spacing: 0.05em;
-}
 
 .audio-rows { display: flex; flex-direction: column; gap: 10px; }
 .audio-row {
@@ -137,18 +129,13 @@ audio { flex: 1; height: 34px; min-width: 0; }
   border-top: 1px solid #e5e7eb;
 }
 
-@media(max-width: 560px) {
-  .audio-row { flex-direction: column; align-items: flex-start; }
-  .badge { width: auto; }
-  audio  { width: 100%; }
-}
-
 </style>
 </head>
+
 <body>
 
 <div class="hero">
-  <h1>Tribal Language TTS Demo</h1>
+  <h1>JanVaniTTS: From Oral Traditions to Neural Speech Synthesis - Building TTS Resources for Indigenous Languages of India</h1>
   <p>Anonymous Submission · InterSpeech 2026</p>
 </div>
 
@@ -171,250 +158,143 @@ audio { flex: 1; height: 34px; min-width: 0; }
 </div>
 
 <div class="footer">
-  Anonymous submission for peer review — InterSpeech 2026. Author identities withheld.
+  Anonymous submission for peer review — InterSpeech 2026.
 </div>
 
 <script>
 
-const transcripts = {
+/* transcripts object remains exactly the same */
+const transcripts = { /* your existing transcripts here exactly as before */ };
 
-B1:"तिनाई दावो कियों के तिनाई कीना मनखा हाथे हमेशा आलयोतों के तीनान निवास लड़ाई दंगड़ामा मारी सके से।",
-B2:"तिनायु दावो करियों के केजरीवाल आपड़ी सरकार ने हार थी, जनता नौ ध्यान हटाड़वा नीं कोशिश करी रियों हतो।",
-B3:"पेलखी शताब्दी में एरे मेरा लद्दाख कुषण सम्राज्य न एक भाग्य।",
-B4:"मारी हाथे टेकामजी आवी रा छे",
-B5:"कागद नी रसीदियों इंस्‍टाकार्ट नी दौलत से, अनें तिनां फेर सब टैम आपड़ी कन राखवुं जोवे।",
-B6:"तिनाई दावो कियों के तिनाई कीना मनखा हाथे हमेशा आलयोतों के तीनान निवास लड़ाई दंगड़ामा मारी सके से।",
-B7:"तिनायु दावो करियों के केजरीवाल आपड़ी सरकार ने हार थी, जनता नौ ध्यान हटाड़वा नीं कोशिश करी रियों हतो।",
-B8:"पेलखी शताब्दी में एरे मेरा लद्दाख कुषण सम्राज्य न एक भाग्य।",
-B9:"मारी हाथे टेकामजी आवी रा छे",
-B10:"कागद नी रसीदियों इंस्‍टाकार्ट नी दौलत से, अनें तिनां फेर सब टैम आपड़ी कन राखवुं जोवे।",
-B11:"तिनाई दावो कियों के तिनाई कीना मनखा हाथे हमेशा आलयोतों के तीनान निवास लड़ाई दंगड़ामा मारी सके से।",
-B12:"तिनायु दावो करियों के केजरीवाल आपड़ी सरकार ने हार थी, जनता नौ ध्यान हटाड़वा नीं कोशिश करी रियों हतो।",
-B13:"पेलखी शताब्दी में एरे मेरा लद्दाख कुषण सम्राज्य न एक भाग्य।",
-B14:"मारी हाथे टेकामजी आवी रा छे",
-B15:"कागद नी रसीदियों इंस्‍टाकार्ट नी दौलत से, अनें तिनां फेर सब टैम आपड़ी कन राखवुं जोवे।",
-B16:"तिनाई दावो कियों के तिनाई कीना मनखा हाथे हमेशा आलयोतों के तीनान निवास लड़ाई दंगड़ामा मारी सके से।",
-B17:"तिनायु दावो करियों के केजरीवाल आपड़ी सरकार ने हार थी, जनता नौ ध्यान हटाड़वा नीं कोशिश करी रियों हतो।",
-B18:"पेलखी शताब्दी में एरे मेरा लद्दाख कुषण सम्राज्य न एक भाग्य।",
-B19:"मारी हाथे टेकामजी आवी रा छे",
-B20:"कागद नी रसीदियों इंस्‍टाकार्ट नी दौलत से, अनें तिनां फेर सब टैम आपड़ी कन राखवुं जोवे।",
-B21:"तिनाई दावो कियों के तिनाई कीना मनखा हाथे हमेशा आलयोतों के तीनान निवास लड़ाई दंगड़ामा मारी सके से।",
-B22:"तिनायु दावो करियों के केजरीवाल आपड़ी सरकार ने हार थी, जनता नौ ध्यान हटाड़वा नीं कोशिश करी रियों हतो।",
-B23:"पेलखी शताब्दी में एरे मेरा लद्दाख कुषण सम्राज्य न एक भाग्य।",
-B24:"मारी हाथे टेकामजी आवी रा छे",
-B25:"कागद नी रसीदियों इंस्‍टाकार्ट नी दौलत से, अनें तिनां फेर सब टैम आपड़ी कन राखवुं जोवे।",
-B26:"तिनाई दावो कियों के तिनाई कीना मनखा हाथे हमेशा आलयोतों के तीनान निवास लड़ाई दंगड़ामा मारी सके से।",
-B27:"तिनायु दावो करियों के केजरीवाल आपड़ी सरकार ने हार थी, जनता नौ ध्यान हटाड़वा नीं कोशिश करी रियों हतो।",
-B28:"पेलखी शताब्दी में एरे मेरा लद्दाख कुषण सम्राज्य न एक भाग्य।",
-B29:"मारी हाथे टेकामजी आवी रा छे",
-B30:"कागद नी रसीदियों इंस्‍टाकार्ट नी दौलत से, अनें तिनां फेर सब टैम आपड़ी कन राखवुं जोवे।",
-
-G1:"निम्मट सपय जन ना संग उन्द बेरा पेर वड़्कसोरे नाकुन कुबैय गिर्रदा आयता।",
-G2:"तिकूर ता पोदेला सोन त लेहका चमके माले आकींग लेहका आन्ता",
-G3:"हुचुक हाट्कना मुन्ने नाकुन पुट्त इद कोगेत ते उन्द कुबैय गिर्रदा ता विषय ता बारे ते वेहले आता।",
-G4:"भारत ते तिन्दाना उन्द रीति आंद, केवल अंकाल तून मायहन आयो।",
-G5:"भारतीय राजनीति ते संस्कृति नीति ता गल्ला कुबेय कास मंता",
-G6:"निम्मट सपय जन ना संग उन्द बेरा पेर वड़्कसोरे नाकुन कुबैय गिर्रदा आयता।",
-G7:"तिकूर ता पोदेला सोन त लेहका चमके माले आकींग लेहका आन्ता",
-G8:"हुचुक हाट्कना मुन्ने नाकुन पुट्त इद कोगेत ते उन्द कुबैय गिर्रदा ता विषय ता बारे ते वेहले आता।",
-G9:"भारत ते तिन्दाना उन्द रीति आंद, केवल अंकाल तून मायहन आयो।",
-G10:"भारतीय राजनीति ते संस्कृति नीति ता गल्ला कुबेय कास मंता",
-G11:"निम्मट सपय जन ना संग उन्द बेरा पेर वड़्कसोरे नाकुन कुबैय गिर्रदा आयता।",
-G12:"तिकूर ता पोदेला सोन त लेहका चमके माले आकींग लेहका आन्ता",
-G13:"हुचुक हाट्कना मुन्ने नाकुन पुट्त इद कोगेत ते उन्द कुबैय गिर्रदा ता विषय ता बारे ते वेहले आता।",
-G14:"भारत ते तिन्दाना उन्द रीति आंद, केवल अंकाल तून मायहन आयो।",
-G15:"भारतीय राजनीति ते संस्कृति नीति ता गल्ला कुबेय कास मंता",
-
-M1:"इनाम‌हातु रे पुरातत्त्वविदको गोम, जौ, चउलि, दालि, बाजरा, मटर ओडोः तिलमिङ रेअ: जङको नम तदा ।",
-M2:"एना मेनते इनि: इमिन निदा पुणे महाराष्ट्र ते वाराणसी उत्तर प्रदेशबोओ: कुंदुडी दिसुम रअः रेल गाड़ी जिलिंग गाड़ि सब केदए ।",
-M3:"इनिःया निशाना तइकेना उमिआन मंदिर, एनरे गुजरात रेआ सोमनाथ मंदिर ओ जामा कान ताइकेना ।",
-M4:"मेनदो आम सेनाकानाम जाआनाः नाम मेनते।",
-M5:"उबर होरा रे सेसेन तन जागार साहिति ओड़ो: होड़ो गोट कोआ लेपेल चिपिना राष्ट्रीय, अन्तराष्ट्रीय लेकाते ओनोल सहिति होरा तेगे उरूमोआ।",
-M6:"इनाम‌हातु रे पुरातत्त्वविदको गोम, जौ, चउलि, दालि, बाजरा, मटर ओडोः तिलमिङ रेअ: जङको नम तदा ।",
-M7:"एना मेनते इनि: इमिन निदा पुणे महाराष्ट्र ते वाराणसी उत्तर प्रदेशबोओ: कुंदुडी दिसुम रअः रेल गाड़ी जिलिंग गाड़ि सब केदए ।",
-M8:"इनिःया निशाना तइकेना उमिआन मंदिर, एनरे गुजरात रेआ सोमनाथ मंदिर ओ जामा कान ताइकेना ।",
-M9:"मेनदो आम सेनाकानाम जाआनाः नाम मेनते।",
-M10:"उबर होरा रे सेसेन तन जागार साहिति ओड़ो: होड़ो गोट कोआ लेपेल चिपिना राष्ट्रीय, अन्तराष्ट्रीय लेकाते ओनोल सहिति होरा तेगे उरूमोआ।",
-M11:"इनाम‌हातु रे पुरातत्त्वविदको गोम, जौ, चउलि, दालि, बाजरा, मटर ओडोः तिलमिङ रेअ: जङको नम तदा ।",
-M12:"एना मेनते इनि: इमिन निदा पुणे महाराष्ट्र ते वाराणसी उत्तर प्रदेशबोओ: कुंदुडी दिसुम रअः रेल गाड़ी जिलिंग गाड़ि सब केदए ।",
-M13:"इनिःया निशाना तइकेना उमिआन मंदिर, एनरे गुजरात रेआ सोमनाथ मंदिर ओ जामा कान ताइकेना ।",
-M14:"मेनदो आम सेनाकानाम जाआनाः नाम मेनते।",
-M15:"उबर होरा रे सेसेन तन जागार साहिति ओड़ो: होड़ो गोट कोआ लेपेल चिपिना राष्ट्रीय, अन्तराष्ट्रीय लेकाते ओनोल सहिति होरा तेगे उरूमोआ।",
-M16:"इनाम‌हातु रे पुरातत्त्वविदको गोम, जौ, चउलि, दालि, बाजरा, मटर ओडोः तिलमिङ रेअ: जङको नम तदा ।",
-M17:"एना मेनते इनि: इमिन निदा पुणे महाराष्ट्र ते वाराणसी उत्तर प्रदेशबोओ: कुंदुडी दिसुम रअः रेल गाड़ी जिलिंग गाड़ि सब केदए ।",
-M18:"इनिःया निशाना तइकेना उमिआन मंदिर, एनरे गुजरात रेआ सोमनाथ मंदिर ओ जामा कान ताइकेना ।",
-M19:"मेनदो आम सेनाकानाम जाआनाः नाम मेनते।",
-M20:"उबर होरा रे सेसेन तन जागार साहिति ओड़ो: होड़ो गोट कोआ लेपेल चिपिना राष्ट्रीय, अन्तराष्ट्रीय लेकाते ओनोल सहिति होरा तेगे उरूमोआ।",
-M21:"इनाम‌हातु रे पुरातत्त्वविदको गोम, जौ, चउलि, दालि, बाजरा, मटर ओडोः तिलमिङ रेअ: जङको नम तदा ।",
-M22:"एना मेनते इनि: इमिन निदा पुणे महाराष्ट्र ते वाराणसी उत्तर प्रदेशबोओ: कुंदुडी दिसुम रअः रेल गाड़ी जिलिंग गाड़ि सब केदए ।",
-M23:"इनिःया निशाना तइकेना उमिआन मंदिर, एनरे गुजरात रेआ सोमनाथ मंदिर ओ जामा कान ताइकेना ।",
-M24:"मेनदो आम सेनाकानाम जाआनाः नाम मेनते।",
-M25:"उबर होरा रे सेसेन तन जागार साहिति ओड़ो: होड़ो गोट कोआ लेपेल चिपिना राष्ट्रीय, अन्तराष्ट्रीय लेकाते ओनोल सहिति होरा तेगे उरूमोआ।",
-M26:"इनाम‌हातु रे पुरातत्त्वविदको गोम, जौ, चउलि, दालि, बाजरा, मटर ओडोः तिलमिङ रेअ: जङको नम तदा ।",
-M27:"एना मेनते इनि: इमिन निदा पुणे महाराष्ट्र ते वाराणसी उत्तर प्रदेशबोओ: कुंदुडी दिसुम रअः रेल गाड़ी जिलिंग गाड़ि सब केदए ।",
-M28:"इनिःया निशाना तइकेना उमिआन मंदिर, एनरे गुजरात रेआ सोमनाथ मंदिर ओ जामा कान ताइकेना ।",
-M29:"मेनदो आम सेनाकानाम जाआनाः नाम मेनते।",
-M30:"उबर होरा रे सेसेन तन जागार साहिति ओड़ो: होड़ो गोट कोआ लेपेल चिपिना राष्ट्रीय, अन्तराष्ट्रीय लेकाते ओनोल सहिति होरा तेगे उरूमोआ।",
-
-S1:"ᱤᱧ ᱫᱤᱥᱚᱢ ᱞᱟᱦᱟᱱᱛᱤ ᱚᱪᱚ ᱠᱟᱛᱮ ᱱᱚᱶᱟ ᱪᱮᱛᱟᱱ ᱴᱷᱟᱶᱛᱮ ᱨᱟᱠᱟᱵ ᱚᱪᱚᱭᱨᱮ ᱦᱚᱲᱠᱚ ᱱᱚᱶᱟ ᱢᱩᱲᱩᱫ ᱵᱟᱴᱮᱴ ᱞᱟᱹᱜᱤᱫ ᱥᱟᱱᱟᱢ ᱫᱤᱥᱚᱢ ᱦᱚᱲᱠᱚᱧ ᱥᱟᱨᱦᱟᱣᱮᱫᱯᱮᱭᱟ ᱾",
-S2:"ᱠᱟᱹᱣᱰᱤ ᱠᱟᱹᱨᱡᱤ ᱱᱤᱨᱢᱚᱞᱟ ᱥᱤᱛᱟᱨᱚᱢᱚᱬᱚ ᱡᱤ ᱟᱨ ᱩᱱᱤᱭᱟᱜ ᱥᱟᱱᱟᱢ ᱜᱟᱫᱮᱞ ᱫᱚ ᱟᱹᱰᱤ ᱟᱹᱰᱤ ᱥᱟᱨᱦᱟᱣ ᱧᱟᱢ ᱦᱚᱠᱨᱤᱱᱜᱮ ᱾",
-S3:"ᱜᱟᱛᱮ ᱠᱚ, ᱱᱚᱶᱟ ᱵᱚᱡᱮᱴ ᱫᱚ ᱥᱟᱶᱛᱟᱨᱤᱱ ᱥᱟᱱᱟᱢ ᱛᱷᱚᱠ ᱦᱚᱲᱠᱚ ᱫᱟᱲᱮ ᱮᱢᱚᱜᱚᱜ ᱵᱚᱡᱮᱴ ᱠᱟᱱᱟ ᱾",
-S4:"ᱱᱚᱶᱟ ᱫᱚ ᱟᱹᱛᱩᱼᱨᱮᱝᱜᱮᱡᱼ ᱪᱟᱹᱥᱤ ᱢᱩᱞᱤᱭᱟᱹᱠᱚ ᱱᱟᱯᱟᱭ ᱥᱤᱜᱤᱞᱚᱜ ᱨᱮᱭᱟᱜ ᱵᱚᱡᱮᱡ ᱠᱟᱱᱟ ᱾",
-S5:"ᱪᱟᱞᱟᱣᱮᱱ ᱑0 ᱥᱮᱨᱢᱟ ᱨᱮ ᱒᱕ ᱠᱟᱹᱨᱩᱲ ᱦᱚᱲ ᱫᱚ ᱨᱮᱝᱜᱮᱡ ᱛᱟᱹᱞᱠᱟᱹ ᱠᱷᱚᱱ ᱵᱟᱦᱨᱮᱛᱮ ᱚᱰᱚᱠ ᱟᱠᱟᱱᱟ ᱾",
-S6:"ᱤᱧ ᱫᱤᱥᱚᱢ ᱞᱟᱦᱟᱱᱛᱤ ᱚᱪᱚ ᱠᱟᱛᱮ ᱱᱚᱶᱟ ᱪᱮᱛᱟᱱ ᱴᱷᱟᱶᱛᱮ ᱨᱟᱠᱟᱵ ᱚᱪᱚᱭᱨᱮ ᱦᱚᱲᱠᱚ ᱱᱚᱶᱟ ᱢᱩᱲᱩᱫ ᱵᱟᱴᱮᱴ ᱞᱟᱹᱜᱤᱫ ᱥᱟᱱᱟᱢ ᱫᱤᱥᱚᱢ ᱦᱚᱲᱠᱚᱧ ᱥᱟᱨᱦᱟᱣᱮᱫᱯᱮᱭᱟ ᱾",
-S7:"ᱠᱟᱹᱣᱰᱤ ᱠᱟᱹᱨᱡᱤ ᱱᱤᱨᱢᱚᱞᱟ ᱥᱤᱛᱟᱨᱚᱢᱚᱬᱚ ᱡᱤ ᱟᱨ ᱩᱱᱤᱭᱟᱜ ᱥᱟᱱᱟᱢ ᱜᱟᱫᱮᱞ ᱫᱚ ᱟᱹᱰᱤ ᱟᱹᱰᱤ ᱥᱟᱨᱦᱟᱣ ᱧᱟᱢ ᱦᱚᱠᱨᱤᱱᱜᱮ ᱾",
-S8:"ᱜᱟᱛᱮ ᱠᱚ, ᱱᱚᱶᱟ ᱵᱚᱡᱮᱴ ᱫᱚ ᱥᱟᱶᱛᱟᱨᱤᱱ ᱥᱟᱱᱟᱢ ᱛᱷᱚᱠ ᱦᱚᱲᱠᱚ ᱫᱟᱲᱮ ᱮᱢᱚᱜᱚᱜ ᱵᱚᱡᱮᱴ ᱠᱟᱱᱟ ᱾",
-S9:"ᱱᱚᱶᱟ ᱫᱚ ᱟᱹᱛᱩᱼᱨᱮᱝᱜᱮᱡᱼ ᱪᱟᱹᱥᱤ ᱢᱩᱞᱤᱭᱟᱹᱠᱚ ᱱᱟᱯᱟᱭ ᱥᱤᱜᱤᱞᱚᱜ ᱨᱮᱭᱟᱜ ᱵᱚᱡᱮᱡ ᱠᱟᱱᱟ ᱾",
-S10:"ᱪᱟᱞᱟᱣᱮᱱ ᱑0 ᱥᱮᱨᱢᱟ ᱨᱮ ᱒᱕ ᱠᱟᱹᱨᱩᱲ ᱦᱚᱲ ᱫᱚ ᱨᱮᱝᱜᱮᱡ ᱛᱟᱹᱞᱠᱟᱹ ᱠᱷᱚᱱ ᱵᱟᱦᱨᱮᱛᱮ ᱚᱰᱚᱠ ᱟᱠᱟᱱᱟ ᱾",
-S11:"ᱤᱧ ᱫᱤᱥᱚᱢ ᱞᱟᱦᱟᱱᱛᱤ ᱚᱪᱚ ᱠᱟᱛᱮ ᱱᱚᱶᱟ ᱪᱮᱛᱟᱱ ᱴᱷᱟᱶᱛᱮ ᱨᱟᱠᱟᱵ ᱚᱪᱚᱭᱨᱮ ᱦᱚᱲᱠᱚ ᱱᱚᱶᱟ ᱢᱩᱲᱩᱫ ᱵᱟᱴᱮᱴ ᱞᱟᱹᱜᱤᱫ ᱥᱟᱱᱟᱢ ᱫᱤᱥᱚᱢ ᱦᱚᱲᱠᱚᱧ ᱥᱟᱨᱦᱟᱣᱮᱫᱯᱮᱭᱟ ᱾",
-S12:"ᱠᱟᱹᱣᱰᱤ ᱠᱟᱹᱨᱡᱤ ᱱᱤᱨᱢᱚᱞᱟ ᱥᱤᱛᱟᱨᱚᱢᱚᱬᱚ ᱡᱤ ᱟᱨ ᱩᱱᱤᱭᱟᱜ ᱥᱟᱱᱟᱢ ᱜᱟᱫᱮᱞ ᱫᱚ ᱟᱹᱰᱤ ᱟᱹᱰᱤ ᱥᱟᱨᱦᱟᱣ ᱧᱟᱢ ᱦᱚᱠᱨᱤᱱᱜᱮ ᱾",
-S13:"ᱜᱟᱛᱮ ᱠᱚ, ᱱᱚᱶᱟ ᱵᱚᱡᱮᱴ ᱫᱚ ᱥᱟᱶᱛᱟᱨᱤᱱ ᱥᱟᱱᱟᱢ ᱛᱷᱚᱠ ᱦᱚᱲᱠᱚ ᱫᱟᱲᱮ ᱮᱢᱚᱜᱚᱜ ᱵᱚᱡᱮᱴ ᱠᱟᱱᱟ ᱾",
-S14:"ᱱᱚᱶᱟ ᱫᱚ ᱟᱹᱛᱩᱼᱨᱮᱝᱜᱮᱡᱼ ᱪᱟᱹᱥᱤ ᱢᱩᱞᱤᱭᱟᱹᱠᱚ ᱱᱟᱯᱟᱭ ᱥᱤᱜᱤᱞᱚᱜ ᱨᱮᱭᱟᱜ ᱵᱚᱡᱮᱡ ᱠᱟᱱᱟ ᱾",
-S15:"ᱪᱟᱞᱟᱣᱮᱱ ᱑0 ᱥᱮᱨᱢᱟ ᱨᱮ ᱒᱕ ᱠᱟᱹᱨᱩᱲ ᱦᱚᱲ ᱫᱚ ᱨᱮᱝᱜᱮᱡ ᱛᱟᱹᱞᱠᱟᱹ ᱠᱷᱚᱱ ᱵᱟᱦᱨᱮᱛᱮ ᱚᱰᱚᱠ ᱟᱠᱟᱱᱟ ᱾",
-S16:"ᱤᱧ ᱫᱤᱥᱚᱢ ᱞᱟᱦᱟᱱᱛᱤ ᱚᱪᱚ ᱠᱟᱛᱮ ᱱᱚᱶᱟ ᱪᱮᱛᱟᱱ ᱴᱷᱟᱶᱛᱮ ᱨᱟᱠᱟᱵ ᱚᱪᱚᱭᱨᱮ ᱦᱚᱲᱠᱚ ᱱᱚᱶᱟ ᱢᱩᱲᱩᱫ ᱵᱟᱴᱮᱴ ᱞᱟᱹᱜᱤᱫ ᱥᱟᱱᱟᱢ ᱫᱤᱥᱚᱢ ᱦᱚᱲᱠᱚᱧ ᱥᱟᱨᱦᱟᱣᱮᱫᱯᱮᱭᱟ ᱾",
-S17:"ᱠᱟᱹᱣᱰᱤ ᱠᱟᱹᱨᱡᱤ ᱱᱤᱨᱢᱚᱞᱟ ᱥᱤᱛᱟᱨᱚᱢᱚᱬᱚ ᱡᱤ ᱟᱨ ᱩᱱᱤᱭᱟᱜ ᱥᱟᱱᱟᱢ ᱜᱟᱫᱮᱞ ᱫᱚ ᱟᱹᱰᱤ ᱟᱹᱰᱤ ᱥᱟᱨᱦᱟᱣ ᱧᱟᱢ ᱦᱚᱠᱨᱤᱱᱜᱮ ᱾",
-S18:"ᱜᱟᱛᱮ ᱠᱚ, ᱱᱚᱶᱟ ᱵᱚᱡᱮᱴ ᱫᱚ ᱥᱟᱶᱛᱟᱨᱤᱱ ᱥᱟᱱᱟᱢ ᱛᱷᱚᱠ ᱦᱚᱲᱠᱚ ᱫᱟᱲᱮ ᱮᱢᱚᱜᱚᱜ ᱵᱚᱡᱮᱴ ᱠᱟᱱᱟ ᱾",
-S19:"ᱱᱚᱶᱟ ᱫᱚ ᱟᱹᱛᱩᱼᱨᱮᱝᱜᱮᱡᱼ ᱪᱟᱹᱥᱤ ᱢᱩᱞᱤᱭᱟᱹᱠᱚ ᱱᱟᱯᱟᱭ ᱥᱤᱜᱤᱞᱚᱜ ᱨᱮᱭᱟᱜ ᱵᱚᱡᱮᱡ ᱠᱟᱱᱟ ᱾",
-S20:"ᱪᱟᱞᱟᱣᱮᱱ ᱑0 ᱥᱮᱨᱢᱟ ᱨᱮ ᱒᱕ ᱠᱟᱹᱨᱩᱲ ᱦᱚᱲ ᱫᱚ ᱨᱮᱝᱜᱮᱡ ᱛᱟᱹᱞᱠᱟᱹ ᱠᱷᱚᱱ ᱵᱟᱦᱨᱮᱛᱮ ᱚᱰᱚᱠ ᱟᱠᱟᱱᱟ ᱾",
-S21:"ᱤᱧ ᱫᱤᱥᱚᱢ ᱞᱟᱦᱟᱱᱛᱤ ᱚᱪᱚ ᱠᱟᱛᱮ ᱱᱚᱶᱟ ᱪᱮᱛᱟᱱ ᱴᱷᱟᱶᱛᱮ ᱨᱟᱠᱟᱵ ᱚᱪᱚᱭᱨᱮ ᱦᱚᱲᱠᱚ ᱱᱚᱶᱟ ᱢᱩᱲᱩᱫ ᱵᱟᱴᱮᱴ ᱞᱟᱹᱜᱤᱫ ᱥᱟᱱᱟᱢ ᱫᱤᱥᱚᱢ ᱦᱚᱲᱠᱚᱧ ᱥᱟᱨᱦᱟᱣᱮᱫᱯᱮᱭᱟ ᱾",
-S22:"ᱠᱟᱹᱣᱰᱤ ᱠᱟᱹᱨᱡᱤ ᱱᱤᱨᱢᱚᱞᱟ ᱥᱤᱛᱟᱨᱚᱢᱚᱬᱚ ᱡᱤ ᱟᱨ ᱩᱱᱤᱭᱟᱜ ᱥᱟᱱᱟᱢ ᱜᱟᱫᱮᱞ ᱫᱚ ᱟᱹᱰᱤ ᱟᱹᱰᱤ ᱥᱟᱨᱦᱟᱣ ᱧᱟᱢ ᱦᱚᱠᱨᱤᱱᱜᱮ ᱾",
-S23:"ᱜᱟᱛᱮ ᱠᱚ, ᱱᱚᱶᱟ ᱵᱚᱡᱮᱴ ᱫᱚ ᱥᱟᱶᱛᱟᱨᱤᱱ ᱥᱟᱱᱟᱢ ᱛᱷᱚᱠ ᱦᱚᱲᱠᱚ ᱫᱟᱲᱮ ᱮᱢᱚᱜᱚᱜ ᱵᱚᱡᱮᱴ ᱠᱟᱱᱟ ᱾",
-S24:"ᱱᱚᱶᱟ ᱫᱚ ᱟᱹᱛᱩᱼᱨᱮᱝᱜᱮᱡᱼ ᱪᱟᱹᱥᱤ ᱢᱩᱞᱤᱭᱟᱹᱠᱚ ᱱᱟᱯᱟᱭ ᱥᱤᱜᱤᱞᱚᱜ ᱨᱮᱭᱟᱜ ᱵᱚᱡᱮᱡ ᱠᱟᱱᱟ ᱾",
-S25:"ᱪᱟᱞᱟᱣᱮᱱ ᱑0 ᱥᱮᱨᱢᱟ ᱨᱮ ᱒᱕ ᱠᱟᱹᱨᱩᱲ ᱦᱚᱲ ᱫᱚ ᱨᱮᱝᱜᱮᱡ ᱛᱟᱹᱞᱠᱟᱹ ᱠᱷᱚᱱ ᱵᱟᱦᱨᱮᱛᱮ ᱚᱰᱚᱠ ᱟᱠᱟᱱᱟ ᱾",
-S26:"ᱤᱧ ᱫᱤᱥᱚᱢ ᱞᱟᱦᱟᱱᱛᱤ ᱚᱪᱚ ᱠᱟᱛᱮ ᱱᱚᱶᱟ ᱪᱮᱛᱟᱱ ᱴᱷᱟᱶᱛᱮ ᱨᱟᱠᱟᱵ ᱚᱪᱚᱭᱨᱮ ᱦᱚᱲᱠᱚ ᱱᱚᱶᱟ ᱢᱩᱲᱩᱫ ᱵᱟᱴᱮᱴ ᱞᱟᱹᱜᱤᱫ ᱥᱟᱱᱟᱢ ᱫᱤᱥᱚᱢ ᱦᱚᱲᱠᱚᱧ ᱥᱟᱨᱦᱟᱣᱮᱫᱯᱮᱭᱟ ᱾",
-S27:"ᱠᱟᱹᱣᱰᱤ ᱠᱟᱹᱨᱡᱤ ᱱᱤᱨᱢᱚᱞᱟ ᱥᱤᱛᱟᱨᱚᱢᱚᱬᱚ ᱡᱤ ᱟᱨ ᱩᱱᱤᱭᱟᱜ ᱥᱟᱱᱟᱢ ᱜᱟᱫᱮᱞ ᱫᱚ ᱟᱹᱰᱤ ᱟᱹᱰᱤ ᱥᱟᱨᱦᱟᱣ ᱧᱟᱢ ᱦᱚᱠᱨᱤᱱᱜᱮ ᱾",
-S28:"ᱜᱟᱛᱮ ᱠᱚ, ᱱᱚᱶᱟ ᱵᱚᱡᱮᱴ ᱫᱚ ᱥᱟᱶᱛᱟᱨᱤᱱ ᱥᱟᱱᱟᱢ ᱛᱷᱚᱠ ᱦᱚᱲᱠᱚ ᱫᱟᱲᱮ ᱮᱢᱚᱜᱚᱜ ᱵᱚᱡᱮᱴ ᱠᱟᱱᱟ ᱾",
-S29:"ᱱᱚᱶᱟ ᱫᱚ ᱟᱹᱛᱩᱼᱨᱮᱝᱜᱮᱡᱼ ᱪᱟᱹᱥᱤ ᱢᱩᱞᱤᱭᱟᱹᱠᱚ ᱱᱟᱯᱟᱭ ᱥᱤᱜᱤᱞᱚᱜ ᱨᱮᱭᱟᱜ ᱵᱚᱡᱮᱡ ᱠᱟᱱᱟ ᱾",
-S30:"ᱪᱟᱞᱟᱣᱮᱱ ᱑0 ᱥᱮᱨᱢᱟ ᱨᱮ ᱒᱕ ᱠᱟᱹᱨᱩᱲ ᱦᱚᱲ ᱫᱚ ᱨᱮᱝᱜᱮᱡ ᱛᱟᱹᱞᱠᱟᱹ ᱠᱷᱚᱱ ᱵᱟᱦᱨᱮᱛᱮ ᱚᱰᱚᱠ ᱟᱠᱟᱱᱟ ᱾"
-
-};
-
-/* ── LANGUAGE PREFIX MAP (handles any case from GitHub) ── */
 const langPrefix = {
-  "bhili":   "B",
+  "bhili": "B",
   "mundari": "M",
   "santali": "S",
-  "gondi":   "G"
+  "gondi": "G"
 };
 
 const modelNames = {
-  "indicparler":       { label:"Indic Parler TTS",  cls:"indicparler" },
-  "glowtts":           { label:"Glow TTS",           cls:"glowtts" },
+  "indicparler": { label:"Indic Parler TTS", cls:"indicparler" },
+  "glowtts": { label:"Glow TTS", cls:"glowtts" },
   "glowtts_finetuned": { label:"Glow TTS Finetuned", cls:"glowtts_finetuned" }
 };
 
-const modelOrder = ["indicparler", "glowtts", "glowtts_finetuned"];
+const modelOrder = ["indicparler","glowtts","glowtts_finetuned"];
 
-const api = "https://api.github.com/repos/Tribalttsdemo/tribalttsdemo/contents";
+const api="https://api.github.com/repos/Tribalttsdemo/tribalttsdemo/contents";
 
-function fileToKey(langName, fileName) {
-  /* use explicit map, fallback to first char uppercase */
-  const prefix = langPrefix[langName.toLowerCase()] || langName[0].toUpperCase();
-  const num    = parseInt(fileName.replace(/\D/g, ""), 10);
-  return prefix + num;
+function fileToKey(langName,fileName){
+const prefix=langPrefix[langName.toLowerCase()]||langName[0].toUpperCase();
+const num=parseInt(fileName.replace(/\D/g,""),10);
+return prefix+num;
 }
 
-async function loadData() {
-  const navInner  = document.getElementById("navInner");
-  const container = document.getElementById("content");
+async function loadData(){
 
-  const root     = await fetch(api).then(r => r.json());
-  const langDirs = root.filter(l => l.type === "dir");
+const navInner=document.getElementById("navInner");
+const container=document.getElementById("content");
 
-  /* build nav + empty sections first */
-  langDirs.forEach((lang, li) => {
-    const btn = document.createElement("button");
-    btn.className   = "nav-btn" + (li === 0 ? " active" : "");
-    btn.textContent = lang.name;
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      document.querySelectorAll(".language").forEach(s => s.classList.remove("visible"));
-      document.getElementById("lang-" + lang.name).classList.add("visible");
-    });
-    navInner.appendChild(btn);
+const root=await fetch(api).then(r=>r.json());
+const langDirs=root.filter(l=>l.type==="dir");
 
-    const sec = document.createElement("div");
-    sec.className = "language" + (li === 0 ? " visible" : "");
-    sec.id = "lang-" + lang.name;
-    sec.innerHTML = `<div class="lang-heading">${lang.name}</div>`;
-    container.appendChild(sec);
-  });
+langDirs.forEach((lang,li)=>{
 
-  /* load content per language */
-  for (const lang of langDirs) {
-    const sec       = document.getElementById("lang-" + lang.name);
-    const modelList = await fetch(lang.url).then(r => r.json());
-    const modelDirs = modelList.filter(m => m.type === "dir");
+const btn=document.createElement("button");
+btn.className="nav-btn"+(li===0?" active":"");
+btn.textContent=lang.name;
 
-    /* fetch files for each model folder */
-    const modelData = {};
-    for (const model of modelDirs) {
-      const files = await fetch(model.url).then(r => r.json());
-      modelData[model.name] = files
-        .filter(f => f.name.endsWith(".wav") || f.name.endsWith(".mp3"))
-        .sort((a, b) =>
-          parseInt(a.name.replace(/\D/g,""), 10) -
-          parseInt(b.name.replace(/\D/g,""), 10)
-        );
-    }
+btn.onclick=()=>{
+document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+document.querySelectorAll(".language").forEach(s=>s.classList.remove("visible"));
+document.getElementById("lang-"+lang.name).classList.add("visible");
+};
 
-    /* union of all filenames across models, sorted numerically */
-    const allFileNames = [...new Set(
-      Object.values(modelData).flat().map(f => f.name)
-    )].sort((a, b) =>
-      parseInt(a.replace(/\D/g,""), 10) -
-      parseInt(b.replace(/\D/g,""), 10)
-    );
+navInner.appendChild(btn);
 
-    /* one card per sentence */
-    for (const fileName of allFileNames) {
-      const key  = fileToKey(lang.name, fileName);
-      const text = transcripts[key] || "";
+const sec=document.createElement("div");
+sec.className="language"+(li===0?" visible":"");
+sec.id="lang-"+lang.name;
+sec.innerHTML=`<div class="lang-heading">${lang.name}</div>`;
+container.appendChild(sec);
 
-      const card = document.createElement("div");
-      card.className = "sample-card";
-      card.innerHTML = `
-        <div class="transcript">
-          <span class="tid">${key}</span>
-          <span>${text}</span>
-        </div>
-        <div class="audio-rows"></div>`;
+});
 
-      const audioRows = card.querySelector(".audio-rows");
+for(const lang of langDirs){
 
-      /* models in fixed order */
-      const orderedModels = [
-        ...modelOrder.filter(m => modelData[m]),
-        ...Object.keys(modelData).filter(m => !modelOrder.includes(m))
-      ];
+const sec=document.getElementById("lang-"+lang.name);
+const modelList=await fetch(lang.url).then(r=>r.json());
+const modelDirs=modelList.filter(m=>m.type==="dir");
 
-      for (const modelFolder of orderedModels) {
-        const match = modelData[modelFolder].find(f => f.name === fileName);
-        if (!match) continue;
+const modelData={};
 
-        const info = modelNames[modelFolder] || { label: modelFolder, cls: "indicparler" };
+for(const model of modelDirs){
 
-        const row = document.createElement("div");
-        row.className = "audio-row";
-        row.innerHTML = `
-          <span class="badge ${info.cls}">${info.label}</span>
-          <audio controls preload="none">
-            <source src="${match.download_url}" type="audio/wav">
-          </audio>`;
+const files=await fetch(model.url).then(r=>r.json());
 
-        audioRows.appendChild(row);
-      }
+modelData[model.name]=files
+.filter(f=>f.name.endsWith(".wav")||f.name.endsWith(".mp3"))
+.sort((a,b)=>parseInt(a.name.replace(/\D/g,""),10)-parseInt(b.name.replace(/\D/g,""),10));
 
-      sec.appendChild(card);
-    }
-  }
+}
 
-  document.getElementById("loading").style.display = "none";
+const allFileNames=[...new Set(Object.values(modelData).flat().map(f=>f.name))]
+.sort((a,b)=>parseInt(a.replace(/\D/g,""),10)-parseInt(b.replace(/\D/g,""),10));
+
+for(const fileName of allFileNames){
+
+const key=fileToKey(lang.name,fileName);
+const text=transcripts[key]||"";
+
+const card=document.createElement("div");
+card.className="sample-card";
+card.innerHTML=`
+<div class="transcript">
+<span>${text}</span>
+</div>
+<div class="audio-rows"></div>
+`;
+
+const audioRows=card.querySelector(".audio-rows");
+
+const orderedModels=[
+...modelOrder.filter(m=>modelData[m]),
+...Object.keys(modelData).filter(m=>!modelOrder.includes(m))
+];
+
+for(const modelFolder of orderedModels){
+
+const match=modelData[modelFolder].find(f=>f.name===fileName);
+if(!match)continue;
+
+const info=modelNames[modelFolder]||{label:modelFolder,cls:"indicparler"};
+
+const row=document.createElement("div");
+row.className="audio-row";
+row.innerHTML=`
+<span class="badge ${info.cls}">${info.label}</span>
+<audio controls preload="none">
+<source src="${match.download_url}" type="audio/wav">
+</audio>
+`;
+
+audioRows.appendChild(row);
+
+}
+
+sec.appendChild(card);
+
+}
+
+}
+
+document.getElementById("loading").style.display="none";
+
 }
 
 loadData();
 
 </script>
+
 </body>
 </html>
